@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mali Conflict Map</title>
+    <!-- 1. Include Leaflet's CSS (styling for the map) -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <style>
+        /* Make the map fill the whole screen */
+        body { margin: 0; padding: 0; }
+        #map { height: 100vh; width: 100vw; }
+    </style>
+</head>
+<body>
+
+    <!-- 2. The div where the map will live -->
+    <div id="map"></div>
+
+    <!-- 3. Include Leaflet's JavaScript (the logic) -->
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    
+    <!-- 4. Include our data file -->
+    <script src="data.js"></script>
+
+    <script>
+        // 5. Initialize the map and center it on Mali
+        // [17.5, -3.9] is roughly the center of Mali
+        const map = L.map('map').setView([17.5, -3.9], 6);
+
+        // 6. Add "Tiles" (the actual map images) from OpenStreetMap
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '&copy; OpenStreetMap contributors'
+        }).addTo(map);
+
+        // 7. Loop through our conflict data and add circles
+        conflictData.forEach(event => {
+            // Determine circle size based on damages (deaths)
+            // We use a minimum size of 5 so even small events are visible
+            const radius = Math.sqrt(event.damages) * 2 + 5;
+
+            // Create a circle
+            const circle = L.circleMarker([event.lat, event.lng], {
+                radius: radius,
+                color: 'red',
+                fillColor: '#f03',
+                fillOpacity: 0.5
+            }).addTo(map);
+
+            // 8. Add the popup with details
+            const popupContent = `
+                <strong>Location:</strong> ${event.location}<br>
+                <strong>Date:</strong> ${event.date}<br>
+                <strong>Cause:</strong> ${event.cause}<br>
+                <strong>Deaths:</strong> ${event.damages}<br>
+                <strong>Severity:</strong> ${event.damages > 10 ? 'High' : 'Low'}
+            `;
+            circle.bindPopup(popupContent);
+        });
+    </script>
+</body>
+</html>
