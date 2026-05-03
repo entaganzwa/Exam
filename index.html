@@ -3,60 +3,118 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mali Conflict Map</title>
-    <!-- 1. Include Leaflet's CSS (styling for the map) -->
+    <title>Mali Conflict & Risk Map</title>
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
     <style>
-        /* Make the map fill the whole screen */
         body { margin: 0; padding: 0; }
         #map { height: 100vh; width: 100vw; }
+        .legend {
+            background: white;
+            padding: 10px;
+            line-height: 18px;
+            color: #555;
+            border-radius: 5px;
+            box-shadow: 0 0 15px rgba(0,0,0,0.2);
+        }
+        .legend i {
+            width: 18px;
+            height: 18px;
+            float: left;
+            margin-right: 8px;
+            opacity: 0.7;
+            border-radius: 50%;
+        }
     </style>
 </head>
 <body>
 
-    <!-- 2. The div where the map will live -->
     <div id="map"></div>
 
-    <!-- 3. Include Leaflet's JavaScript (the logic) -->
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
-    
-    <!-- 4. Include our data file -->
+    <!-- Load both data files -->
     <script src="data.js"></script>
+    <script src="at_risk_data.js"></script>
 
     <script>
-        // 5. Initialize the map and center it on Mali
-        // [17.5, -3.9] is roughly the center of Mali
+        // 1. Initialize the map
         const map = L.map('map').setView([17.5, -3.9], 6);
 
-        // 6. Add "Tiles" (the actual map images) from OpenStreetMap
-        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        // 2. Add Map Tiles
+        const osm = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
             attribution: '&copy; OpenStreetMap contributors'
         }).addTo(map);
 
-        // 7. Loop through our conflict data and add circles
-        conflictData.forEach(event => {
-            // Determine circle size based on damages (deaths)
-            // We use a minimum size of 5 so even small events are visible
-            const radius = Math.sqrt(event.damages) * 2 + 5;
+        // 3. Create Layer Groups
+        const conflictLayer = L.layerGroup();
+        const schoolLayer = L.layerGroup();
 
-            // Create a circle
+        // 4. Add Conflicts to conflictLayer
+        conflictData.forEach(event => {
+            const radius = Math.sqrt(event.damages) * 2 + 5;
             const circle = L.circleMarker([event.lat, event.lng], {
                 radius: radius,
                 color: 'red',
                 fillColor: '#f03',
                 fillOpacity: 0.5
-            }).addTo(map);
+            });
 
-            // 8. Add the popup with details
             const popupContent = `
+                <div style="color: red; font-weight: bold;">CONFLICT EVENT</div>
                 <strong>Location:</strong> ${event.location}<br>
                 <strong>Date:</strong> ${event.date}<br>
                 <strong>Cause:</strong> ${event.cause}<br>
-                <strong>Deaths:</strong> ${event.damages}<br>
-                <strong>Severity:</strong> ${event.damages > 10 ? 'High' : 'Low'}
+                <strong>Deaths:</strong> ${event.damages}
             `;
             circle.bindPopup(popupContent);
+            conflictLayer.addLayer(circle);
         });
+
+        // 5. Add At-Risk Schools to schoolLayer
+        atRiskSchools.forEach(school => {
+            const circle = L.circleMarker([school.lat, school.lng], {
+                radius: 7,
+                color: 'blue',
+                fillColor: '#3388ff',
+                fillOpacity: 0.8
+            });
+
+            const popupContent = `
+                <div style="color: blue; font-weight: bold;">AT-RISK SCHOOL</div>
+                <strong>Name:</strong> ${school.name}<br>
+                <strong>Type:</strong> ${school.type}<br>
+                <strong>Recent Conflict Near:</strong> ${school.conflict_date}<br>
+                <span style="color: orange;">⚠️ Within 1km of conflict</span>
+            `;
+            circle.bindPopup(popupContent);
+            schoolLayer.addLayer(circle);
+        });
+
+        // 6. Add both layers to map by default
+        conflictLayer.addTo(map);
+        schoolLayer.addTo(map);
+
+        // 7. Create the Filter/Toggle Control
+        const baseMaps = {
+            "Standard Map": osm
+        };
+
+        const overlayMaps = {
+            "<span style='color: red;'>Conflict Events</span>": conflictLayer,
+            "<span style='color: blue;'>At-Risk Schools</span>": schoolLayer
+        };
+
+        L.control.layers(baseMaps, overlayMaps, { collapsed: false }).addTo(map);
+
+        // 8. Add a simple legend
+        const legend = L.control({position: 'bottomright'});
+        legend.onAdd = function (map) {
+            const div = L.DomUtil.create('div', 'legend');
+            div.innerHTML += '<i style="background: red"></i> Conflict Zones<br>';
+            div.innerHTML += '<i style="background: blue"></i> At-Risk Schools (1km radius)<br>';
+            return div;
+        };
+        legend.addTo(map);
+
     </script>
 </body>
 </html>
