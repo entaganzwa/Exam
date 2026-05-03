@@ -3,114 +3,258 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mali Conflict & Risk Map</title>
+    <title>Mali: Conflict Risk Assessment</title>
+    
+    <!-- Professional Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Leaflet CSS -->
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    
     <style>
-        body { margin: 0; padding: 0; }
-        #map { height: 100vh; width: 100vw; }
+        :root {
+            --conflict-red: #e63946;
+            --school-blue: #457b9d;
+            --text-dark: #1d3557;
+            --bg-light: #f1faee;
+        }
+
+        body { 
+            margin: 0; 
+            padding: 0; 
+            font-family: 'Inter', sans-serif;
+            background-color: #f8f9fa;
+        }
+
+        #map { 
+            height: 100vh; 
+            width: 100vw; 
+            z-index: 1;
+        }
+
+        /* Modern Legend Styling */
         .legend {
-            background: white;
-            padding: 10px;
-            line-height: 18px;
-            color: #555;
-            border-radius: 5px;
-            box-shadow: 0 0 15px rgba(0,0,0,0.2);
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(5px);
+            padding: 15px;
+            line-height: 24px;
+            color: var(--text-dark);
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            border: 1px solid rgba(0,0,0,0.05);
+            font-size: 13px;
+        }
+        .legend h4 {
+            margin: 0 0 10px 0;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            font-size: 11px;
+            color: #666;
         }
         .legend i {
-            width: 18px;
-            height: 18px;
+            width: 12px;
+            height: 12px;
             float: left;
-            margin-right: 8px;
-            opacity: 0.7;
+            margin: 6px 10px 0 0;
             border-radius: 50%;
+        }
+
+        /* Clean Popup Styling */
+        .leaflet-popup-content-wrapper {
+            border-radius: 12px;
+            padding: 5px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+        }
+        .leaflet-popup-content {
+            font-size: 14px;
+            line-height: 1.6;
+            margin: 12px;
+        }
+        .popup-header {
+            font-weight: 700;
+            font-size: 11px;
+            text-transform: uppercase;
+            margin-bottom: 8px;
+            display: block;
+        }
+        .popup-title {
+            font-weight: 700;
+            font-size: 16px;
+            color: var(--text-dark);
+            margin-bottom: 10px;
+            display: block;
+        }
+        .popup-row {
+            margin-bottom: 4px;
+            color: #555;
+        }
+        .popup-row b {
+            color: var(--text-dark);
+        }
+
+        /* Layer Control Styling */
+        .leaflet-control-layers {
+            border-radius: 12px !important;
+            border: none !important;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1) !important;
+            padding: 8px 12px !important;
+        }
+        
+        /* Floating Title Info */
+        .map-title {
+            position: absolute;
+            top: 20px;
+            left: 50px;
+            z-index: 1000;
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(5px);
+            padding: 15px 25px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            pointer-events: none;
+        }
+        .map-title h1 {
+            margin: 0;
+            font-size: 20px;
+            font-weight: 700;
+            color: var(--text-dark);
+        }
+        .map-title p {
+            margin: 5px 0 0 0;
+            font-size: 13px;
+            color: #666;
         }
     </style>
 </head>
 <body>
 
+    <div class="map-title">
+        <h1>Mali: Education at Risk</h1>
+        <p>Analyzing school infrastructure within 1km of conflict zones</p>
+    </div>
+
     <div id="map"></div>
 
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
-    <!-- Load both data files -->
     <script src="data.js"></script>
     <script src="at_risk_data.js"></script>
 
     <script>
-        // 1. Initialize the map
-        const map = L.map('map').setView([17.5, -3.9], 6);
+        // 1. Initialize Map
+        const map = L.map('map', {
+            zoomControl: false // Move zoom to right later
+        }).setView([17.0, -4.0], 6);
 
-        // 2. Add Map Tiles
-        const osm = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-            attribution: '&copy; OpenStreetMap contributors'
+        // Add Zoom Control to Top Right
+        L.control.zoom({ position: 'topright' }).addTo(map);
+
+        // 2. Beautiful Base Map (CartoDB Positron - Light & Clean)
+        const lightMap = L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
+            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
+            subdomains: 'abcd',
+            maxZoom: 20
         }).addTo(map);
 
-        // 3. Create Layer Groups
+        const darkMap = L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
+            attribution: '&copy; OpenStreetMap contributors &copy; CARTO'
+        });
+
+        // 3. Layer Groups
         const conflictLayer = L.layerGroup();
         const schoolLayer = L.layerGroup();
 
-        // 4. Add Conflicts to conflictLayer
+        // 4. Style Conflict Events
         conflictData.forEach(event => {
-            const radius = Math.sqrt(event.damages) * 2 + 5;
+            const radius = Math.sqrt(event.damages) * 1.5 + 4;
             const circle = L.circleMarker([event.lat, event.lng], {
                 radius: radius,
-                color: 'red',
-                fillColor: '#f03',
-                fillOpacity: 0.5
+                color: '#e63946',
+                weight: 1,
+                fillColor: '#e63946',
+                fillOpacity: 0.4
             });
 
             const popupContent = `
-                <div style="color: red; font-weight: bold;">CONFLICT EVENT</div>
-                <strong>Location:</strong> ${event.location}<br>
-                <strong>Date:</strong> ${event.date}<br>
-                <strong>Cause:</strong> ${event.cause}<br>
-                <strong>Deaths:</strong> ${event.damages}
+                <span class="popup-header" style="color: #e63946;">Conflict Event</span>
+                <span class="popup-title">${event.cause}</span>
+                <div class="popup-row"><b>Location:</b> ${event.location}</div>
+                <div class="popup-row"><b>Date:</b> ${event.date}</div>
+                <div class="popup-row"><b>Fatalities:</b> ${event.damages}</div>
             `;
             circle.bindPopup(popupContent);
+            
+            // Hover effect
+            circle.on('mouseover', function(e) {
+                this.setStyle({ fillOpacity: 0.8, weight: 2 });
+            });
+            circle.on('mouseout', function(e) {
+                this.setStyle({ fillOpacity: 0.4, weight: 1 });
+            });
+
             conflictLayer.addLayer(circle);
         });
 
-        // 5. Add At-Risk Schools to schoolLayer
+        // 5. Style At-Risk Schools
         atRiskSchools.forEach(school => {
             const circle = L.circleMarker([school.lat, school.lng], {
-                radius: 7,
-                color: 'blue',
-                fillColor: '#3388ff',
-                fillOpacity: 0.8
+                radius: 6,
+                color: '#457b9d',
+                weight: 2,
+                fillColor: '#a8dadc',
+                fillOpacity: 0.9
             });
 
             const popupContent = `
-                <div style="color: blue; font-weight: bold;">AT-RISK SCHOOL</div>
-                <strong>Name:</strong> ${school.name}<br>
-                <strong>Type:</strong> ${school.type}<br>
-                <strong>Recent Conflict Near:</strong> ${school.conflict_date}<br>
-                <span style="color: orange;">⚠️ Within 1km of conflict</span>
+                <span class="popup-header" style="color: #457b9d;">Educational Facility</span>
+                <span class="popup-title">${school.name}</span>
+                <div class="popup-row"><b>Type:</b> ${school.type}</div>
+                <div class="popup-row" style="color: #e67e22; font-weight: 600; margin-top: 10px;">
+                    ⚠️ At risk (Within 1km of conflict)
+                </div>
             `;
             circle.bindPopup(popupContent);
+
+            circle.on('mouseover', function(e) {
+                this.setStyle({ radius: 10, color: '#1d3557' });
+            });
+            circle.on('mouseout', function(e) {
+                this.setStyle({ radius: 6, color: '#457b9d' });
+            });
+
             schoolLayer.addLayer(circle);
         });
 
-        // 6. Add both layers to map by default
+        // 6. Default view
         conflictLayer.addTo(map);
         schoolLayer.addTo(map);
 
-        // 7. Create the Filter/Toggle Control
+        // 7. Layer Controls
         const baseMaps = {
-            "Standard Map": osm
+            "Light Theme": lightMap,
+            "Dark Theme": darkMap
         };
 
         const overlayMaps = {
-            "<span style='color: red;'>Conflict Events</span>": conflictLayer,
-            "<span style='color: blue;'>At-Risk Schools</span>": schoolLayer
+            "Conflict Zones": conflictLayer,
+            "At-Risk Schools": schoolLayer
         };
 
-        L.control.layers(baseMaps, overlayMaps, { collapsed: false }).addTo(map);
+        L.control.layers(baseMaps, overlayMaps, { 
+            collapsed: false,
+            position: 'topright'
+        }).addTo(map);
 
-        // 8. Add a simple legend
+        // 8. Enhanced Legend
         const legend = L.control({position: 'bottomright'});
         legend.onAdd = function (map) {
             const div = L.DomUtil.create('div', 'legend');
-            div.innerHTML += '<i style="background: red"></i> Conflict Zones<br>';
-            div.innerHTML += '<i style="background: blue"></i> At-Risk Schools (1km radius)<br>';
+            div.innerHTML += '<h4>Map Legend</h4>';
+            div.innerHTML += '<i style="background: #e63946; opacity: 0.5;"></i> Conflict Incidents<br>';
+            div.innerHTML += '<i style="background: #457b9d; border: 2px solid #1d3557;"></i> At-Risk Schools<br>';
+            div.innerHTML += '<div style="margin-top: 10px; font-size: 10px; color: #999;">Data source: ACLED & HOTOSM</div>';
             return div;
         };
         legend.addTo(map);
