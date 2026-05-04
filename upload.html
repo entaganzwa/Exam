@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mali Risk Assessment | CSV Upload</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-blue: #1d3557;
+            --accent-red: #e63946;
+            --bg-light: #f8f9fa;
+        }
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-light);
+        }
+        .navbar { background-color: white; box-shadow: 0 2px 10px rgba(0,0,0,0.05); padding: 15px 0; }
+        .navbar-brand { font-weight: 800; color: var(--primary-blue); }
+        .nav-link { font-weight: 600; color: #555; margin-left: 20px; }
+        
+        .upload-container {
+            max-width: 800px;
+            margin: 80px auto;
+            background: white;
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.05);
+        }
+        .drop-zone {
+            border: 2px dashed #ddd;
+            border-radius: 15px;
+            padding: 40px;
+            text-align: center;
+            transition: all 0.3s;
+            cursor: pointer;
+            margin: 20px 0;
+        }
+        .drop-zone:hover { border-color: var(--accent-red); background: #fff5f5; }
+        
+        #preview-table { font-size: 13px; margin-top: 30px; }
+    </style>
+</head>
+<body>
+
+    <nav class="navbar navbar-expand-lg sticky-top">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">MALI RISK PROJECT</a>
+            <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="conflict_map.html">Interactive Map</a></li>
+                    <li class="nav-item"><a class="nav-link" href="dashboard.html">Data Charts</a></li>
+                    <li class="nav-item"><a class="nav-link" href="upload.html">CSV Upload</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container">
+        <div class="upload-container">
+            <h2 style="font-weight: 800; color: var(--primary-blue);">Upload Conflict Data</h2>
+            <p class="text-muted">Upload a new CSV file to analyze local conflict patterns or school risks.</p>
+            
+            <div class="drop-zone" onclick="document.getElementById('csvFile').click()">
+                <div style="font-size: 3rem; margin-bottom: 15px;">📄</div>
+                <p style="font-weight: 700; margin-bottom: 5px;">Drag & Drop CSV or Click to Browse</p>
+                <p class="small text-muted">Supports .csv files up to 10MB</p>
+                <input type="file" id="csvFile" style="display: none;" accept=".csv">
+            </div>
+
+            <div id="preview-section" style="display: none;">
+                <h5 style="font-weight: 800;">Data Preview</h5>
+                <div class="table-responsive">
+                    <table class="table table-sm table-hover" id="preview-table">
+                        <thead class="table-light"></thead>
+                        <tbody></tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('csvFile').addEventListener('change', function(e) {
+            const file = e.target.files[0];
+            if (!file) return;
+
+            const reader = new FileReader();
+            reader.onload = function(event) {
+                const text = event.target.result;
+                const rows = text.split('\n').slice(0, 6); // Preview top 5 rows
+                
+                const table = document.getElementById('preview-table');
+                const thead = table.querySelector('thead');
+                const tbody = table.querySelector('tbody');
+                
+                thead.innerHTML = '';
+                tbody.innerHTML = '';
+
+                rows.forEach((row, index) => {
+                    const cols = row.split(',');
+                    const tr = document.createElement('tr');
+                    
+                    cols.forEach(col => {
+                        const cell = document.createElement(index === 0 ? 'th' : 'td');
+                        cell.textContent = col.trim();
+                        tr.appendChild(cell);
+                    });
+
+                    if (index === 0) thead.appendChild(tr);
+                    else tbody.appendChild(tr);
+                });
+
+                document.getElementById('preview-section').style.display = 'block';
+            };
+            reader.readAsText(file);
+        });
+    </script>
+
+</body>
+</html>
