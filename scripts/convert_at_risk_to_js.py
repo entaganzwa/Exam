@@ -1,8 +1,8 @@
 import csv
 import json
 
-input_file = 'at_risk_schools.csv'
-output_file = 'at_risk_data.js'
+input_file = 'data/processed/at_risk_schools.csv'
+output_file = 'js/at_risk_data.js'
 
 schools = []
 

@@ -54,4 +54,4 @@ def aggregate_data(input_path, output_path):
         json.dump(data, f, indent=2)
 
 if __name__ == "__main__":
-    aggregate_data('data/processed/GEDEvent_v25_1_cleaned.csv', 'js/dashboard_data.json')
+    aggregate_data('data/processed/mali_conflicts.csv', 'js/dashboard_data.json')

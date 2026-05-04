@@ -1588,42 +1588,6 @@
     {
       "type": "Feature",
       "properties": {
-        "name": "Universit\u00e9 CESK/CPESK",
-        "name:en": null,
-        "amenity": "university",
-        "building": null,
-        "operator:type": null,
-        "capacity:persons": null,
-        "addr:full": null,
-        "addr:city": null,
-        "source": null,
-        "name:bam": null,
-        "name:bobo": null,
-        "name:bzx": null,
-        "name:dog": null,
-        "name:ff": null,
-        "name:mey": null,
-        "name:kvx": null,
-        "name:man": null,
-        "name:myl": null,
-        "name:ses": null,
-        "name:son": null,
-        "name:snk": null,
-        "name:taq": null,
-        "osm_id": 7501493031,
-        "osm_type": "nodes"
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -8.0027112,
-          12.6402179
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
         "name": "second cycle",
         "name:en": null,
         "amenity": "school",
@@ -25960,42 +25924,6 @@
     {
       "type": "Feature",
       "properties": {
-        "name": "Centre de Formation Technique de Kalabacor CFTK",
-        "name:en": null,
-        "amenity": "university",
-        "building": null,
-        "operator:type": null,
-        "capacity:persons": null,
-        "addr:full": null,
-        "addr:city": null,
-        "source": null,
-        "name:bam": null,
-        "name:bobo": null,
-        "name:bzx": null,
-        "name:dog": null,
-        "name:ff": null,
-        "name:mey": null,
-        "name:kvx": null,
-        "name:man": null,
-        "name:myl": null,
-        "name:ses": null,
-        "name:son": null,
-        "name:snk": null,
-        "name:taq": null,
-        "osm_id": 7973652823,
-        "osm_type": "nodes"
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -8.004456,
-          12.5592983
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
         "name": "Madarasaso bl\u00e9ma P\u00e9lengana Nord",
         "name:en": null,
         "amenity": "kindergarten",
@@ -27976,78 +27904,6 @@
     {
       "type": "Feature",
       "properties": {
-        "name": "Institut de formation Agros Pastorale",
-        "name:en": null,
-        "amenity": "university",
-        "building": null,
-        "operator:type": null,
-        "capacity:persons": null,
-        "addr:full": null,
-        "addr:city": null,
-        "source": null,
-        "name:bam": null,
-        "name:bobo": null,
-        "name:bzx": null,
-        "name:dog": null,
-        "name:ff": null,
-        "name:mey": null,
-        "name:kvx": null,
-        "name:man": null,
-        "name:myl": null,
-        "name:ses": null,
-        "name:son": null,
-        "name:snk": null,
-        "name:taq": null,
-        "osm_id": 7722371175,
-        "osm_type": "nodes"
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -9.5029472,
-          13.0298791
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "name": "Ecole de Sant\u00e9 BANTA SEKOU",
-        "name:en": null,
-        "amenity": "university",
-        "building": null,
-        "operator:type": null,
-        "capacity:persons": null,
-        "addr:full": null,
-        "addr:city": null,
-        "source": null,
-        "name:bam": null,
-        "name:bobo": null,
-        "name:bzx": null,
-        "name:dog": null,
-        "name:ff": null,
-        "name:mey": null,
-        "name:kvx": null,
-        "name:man": null,
-        "name:myl": null,
-        "name:ses": null,
-        "name:son": null,
-        "name:snk": null,
-        "name:taq": null,
-        "osm_id": 7715156938,
-        "osm_type": "nodes"
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -9.4839491,
-          13.0404086
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
         "name": "Ladamuso Saouda",
         "name:en": null,
         "amenity": "kindergarten",
@@ -29956,42 +29812,6 @@
     {
       "type": "Feature",
       "properties": {
-        "name": "Universit\u00e9 Catholique de l\u2019Afrique de l\u2019Ouest",
-        "name:en": null,
-        "amenity": "school",
-        "building": null,
-        "operator:type": null,
-        "capacity:persons": null,
-        "addr:full": null,
-        "addr:city": null,
-        "source": null,
-        "name:bam": null,
-        "name:bobo": null,
-        "name:bzx": null,
-        "name:dog": null,
-        "name:ff": null,
-        "name:mey": null,
-        "name:kvx": null,
-        "name:man": null,
-        "name:myl": null,
-        "name:ses": null,
-        "name:son": null,
-        "name:snk": null,
-        "name:taq": null,
-        "osm_id": 5496787525,
-        "osm_type": "nodes"
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -8.0362712,
-          12.6447449
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
         "name": "Lyc\u00e9e Prosper Kamara",
         "name:en": null,
         "amenity": "school",
@@ -30136,42 +29956,6 @@
     {
       "type": "Feature",
       "properties": {
-        "name": "Facult\u00e9 des Sciences \u00c9conomiques et de Gestion",
-        "name:en": null,
-        "amenity": "college",
-        "building": null,
-        "operator:type": "public",
-        "capacity:persons": null,
-        "addr:full": "Colline de Badalabougou, Bamako, Mali",
-        "addr:city": null,
-        "source": "local_knowledge;oif-dfen_carteinnov",
-        "name:bam": null,
-        "name:bobo": null,
-        "name:bzx": null,
-        "name:dog": null,
-        "name:ff": null,
-        "name:mey": null,
-        "name:kvx": null,
-        "name:man": null,
-        "name:myl": null,
-        "name:ses": null,
-        "name:son": null,
-        "name:snk": null,
-        "name:taq": null,
-        "osm_id": 1151341161,
-        "osm_type": "nodes"
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -7.9902761,
-          12.6093806
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
         "name": "ESTM",
         "name:en": null,
         "amenity": "college",
@@ -30274,42 +30058,6 @@
         "coordinates": [
           -8.0329994,
           12.6482652
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "name": "(CENOU) Centre National des Oeuvres Universitaire",
-        "name:en": null,
-        "amenity": "university",
-        "building": null,
-        "operator:type": null,
-        "capacity:persons": null,
-        "addr:full": null,
-        "addr:city": null,
-        "source": null,
-        "name:bam": null,
-        "name:bobo": null,
-        "name:bzx": null,
-        "name:dog": null,
-        "name:ff": null,
-        "name:mey": null,
-        "name:kvx": null,
-        "name:man": null,
-        "name:myl": null,
-        "name:ses": null,
-        "name:son": null,
-        "name:snk": null,
-        "name:taq": null,
-        "osm_id": 3463637297,
-        "osm_type": "nodes"
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -8.0291626,
-          12.6265579
         ]
       }
     },
@@ -32224,114 +31972,6 @@
     {
       "type": "Feature",
       "properties": {
-        "name": "D\u00e9partement Langues et Sciences du Language",
-        "name:en": null,
-        "amenity": "university",
-        "building": null,
-        "operator:type": null,
-        "capacity:persons": null,
-        "addr:full": null,
-        "addr:city": null,
-        "source": null,
-        "name:bam": null,
-        "name:bobo": null,
-        "name:bzx": null,
-        "name:dog": null,
-        "name:ff": null,
-        "name:mey": null,
-        "name:kvx": null,
-        "name:man": null,
-        "name:myl": null,
-        "name:ses": null,
-        "name:son": null,
-        "name:snk": null,
-        "name:taq": null,
-        "osm_id": 6021793946,
-        "osm_type": "nodes"
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -8.0511033,
-          12.48506
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "name": "D\u00e9partement Sociologie et Sciences de l'\u00e9ducation",
-        "name:en": null,
-        "amenity": "university",
-        "building": null,
-        "operator:type": null,
-        "capacity:persons": null,
-        "addr:full": null,
-        "addr:city": null,
-        "source": null,
-        "name:bam": null,
-        "name:bobo": null,
-        "name:bzx": null,
-        "name:dog": null,
-        "name:ff": null,
-        "name:mey": null,
-        "name:kvx": null,
-        "name:man": null,
-        "name:myl": null,
-        "name:ses": null,
-        "name:son": null,
-        "name:snk": null,
-        "name:taq": null,
-        "osm_id": 6021793941,
-        "osm_type": "nodes"
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -8.0523267,
-          12.4851067
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "name": "\u00c9lite",
-        "name:en": null,
-        "amenity": "university",
-        "building": null,
-        "operator:type": null,
-        "capacity:persons": null,
-        "addr:full": null,
-        "addr:city": null,
-        "source": null,
-        "name:bam": null,
-        "name:bobo": null,
-        "name:bzx": null,
-        "name:dog": null,
-        "name:ff": null,
-        "name:mey": null,
-        "name:kvx": null,
-        "name:man": null,
-        "name:myl": null,
-        "name:ses": null,
-        "name:son": null,
-        "name:snk": null,
-        "name:taq": null,
-        "osm_id": 9403704897,
-        "osm_type": "nodes"
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -7.933329,
-          12.5729537
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
         "name": "Jardin d'Enfant Wassoulou",
         "name:en": null,
         "amenity": "kindergarten",
@@ -33520,42 +33160,6 @@
     {
       "type": "Feature",
       "properties": {
-        "name": null,
-        "name:en": null,
-        "amenity": null,
-        "building": "school",
-        "operator:type": null,
-        "capacity:persons": null,
-        "addr:full": null,
-        "addr:city": null,
-        "source": "Bing",
-        "name:bam": null,
-        "name:bobo": null,
-        "name:bzx": null,
-        "name:dog": null,
-        "name:ff": null,
-        "name:mey": null,
-        "name:kvx": null,
-        "name:man": null,
-        "name:myl": null,
-        "name:ses": null,
-        "name:son": null,
-        "name:snk": null,
-        "name:taq": null,
-        "osm_id": 3236989234,
-        "osm_type": "nodes"
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -8.2172034,
-          12.0801084
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
         "name": "JANDIN ENFANT",
         "name:en": null,
         "amenity": "kindergarten",
@@ -34630,42 +34234,6 @@
         "coordinates": [
           -4.6962737,
           12.8459249
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "name": "Universit\u00e9 ISSP Mali",
-        "name:en": null,
-        "amenity": "university",
-        "building": null,
-        "operator:type": null,
-        "capacity:persons": null,
-        "addr:full": null,
-        "addr:city": null,
-        "source": null,
-        "name:bam": null,
-        "name:bobo": null,
-        "name:bzx": null,
-        "name:dog": null,
-        "name:ff": null,
-        "name:mey": null,
-        "name:kvx": null,
-        "name:man": null,
-        "name:myl": null,
-        "name:ses": null,
-        "name:son": null,
-        "name:snk": null,
-        "name:taq": null,
-        "osm_id": 9421515588,
-        "osm_type": "nodes"
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -4.9140804,
-          13.2885764
         ]
       }
     },
@@ -39280,78 +38848,6 @@
     {
       "type": "Feature",
       "properties": {
-        "name": "Modibo Kane",
-        "name:en": null,
-        "amenity": "university",
-        "building": null,
-        "operator:type": "private",
-        "capacity:persons": null,
-        "addr:full": null,
-        "addr:city": null,
-        "source": null,
-        "name:bam": null,
-        "name:bobo": null,
-        "name:bzx": null,
-        "name:dog": null,
-        "name:ff": null,
-        "name:mey": null,
-        "name:kvx": null,
-        "name:man": null,
-        "name:myl": null,
-        "name:ses": null,
-        "name:son": null,
-        "name:snk": null,
-        "name:taq": null,
-        "osm_id": 11792978608,
-        "osm_type": "nodes"
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -8.016463,
-          12.5831172
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "name": "Universit\u00e9 Iglam",
-        "name:en": null,
-        "amenity": "university",
-        "building": null,
-        "operator:type": null,
-        "capacity:persons": null,
-        "addr:full": null,
-        "addr:city": null,
-        "source": null,
-        "name:bam": null,
-        "name:bobo": null,
-        "name:bzx": null,
-        "name:dog": null,
-        "name:ff": null,
-        "name:mey": null,
-        "name:kvx": null,
-        "name:man": null,
-        "name:myl": null,
-        "name:ses": null,
-        "name:son": null,
-        "name:snk": null,
-        "name:taq": null,
-        "osm_id": 5304895826,
-        "osm_type": "nodes"
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -8.0173199,
-          12.580095
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
         "name": "Ecole",
         "name:en": null,
         "amenity": "kindergarten",
@@ -43852,78 +43348,6 @@
     {
       "type": "Feature",
       "properties": {
-        "name": "Institut de Formation Proffessionnel Fama Daou",
-        "name:en": null,
-        "amenity": "university",
-        "building": null,
-        "operator:type": null,
-        "capacity:persons": null,
-        "addr:full": null,
-        "addr:city": null,
-        "source": null,
-        "name:bam": null,
-        "name:bobo": null,
-        "name:bzx": null,
-        "name:dog": null,
-        "name:ff": null,
-        "name:mey": null,
-        "name:kvx": null,
-        "name:man": null,
-        "name:myl": null,
-        "name:ses": null,
-        "name:son": null,
-        "name:snk": null,
-        "name:taq": null,
-        "osm_id": 7731434562,
-        "osm_type": "nodes"
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -9.4813292,
-          13.0396776
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "name": "Universit\u00e9 Priv\u00e9e gemini management International",
-        "name:en": null,
-        "amenity": "university",
-        "building": null,
-        "operator:type": null,
-        "capacity:persons": null,
-        "addr:full": null,
-        "addr:city": null,
-        "source": null,
-        "name:bam": null,
-        "name:bobo": null,
-        "name:bzx": null,
-        "name:dog": null,
-        "name:ff": null,
-        "name:mey": null,
-        "name:kvx": null,
-        "name:man": null,
-        "name:myl": null,
-        "name:ses": null,
-        "name:son": null,
-        "name:snk": null,
-        "name:taq": null,
-        "osm_id": 7741756119,
-        "osm_type": "nodes"
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -9.4904174,
-          13.0428554
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
         "name": "Jardin public",
         "name:en": null,
         "amenity": "kindergarten",
@@ -44602,42 +44026,6 @@
         "coordinates": [
           -8.0316443,
           12.6393056
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "name": "Ecole Normale d'Enseignement Technique et Professionnel (ENETP)",
-        "name:en": null,
-        "amenity": "university",
-        "building": null,
-        "operator:type": null,
-        "capacity:persons": null,
-        "addr:full": null,
-        "addr:city": null,
-        "source": null,
-        "name:bam": null,
-        "name:bobo": null,
-        "name:bzx": null,
-        "name:dog": null,
-        "name:ff": null,
-        "name:mey": null,
-        "name:kvx": null,
-        "name:man": null,
-        "name:myl": null,
-        "name:ses": null,
-        "name:son": null,
-        "name:snk": null,
-        "name:taq": null,
-        "osm_id": 3463690520,
-        "osm_type": "nodes"
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -8.0294243,
-          12.6268323
         ]
       }
     },
@@ -45610,42 +44998,6 @@
         "coordinates": [
           -5.771397,
           12.8444536
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "name": "institut vito s",
-        "name:en": null,
-        "amenity": "university",
-        "building": null,
-        "operator:type": null,
-        "capacity:persons": null,
-        "addr:full": null,
-        "addr:city": null,
-        "source": null,
-        "name:bam": null,
-        "name:bobo": null,
-        "name:bzx": null,
-        "name:dog": null,
-        "name:ff": null,
-        "name:mey": null,
-        "name:kvx": null,
-        "name:man": null,
-        "name:myl": null,
-        "name:ses": null,
-        "name:son": null,
-        "name:snk": null,
-        "name:taq": null,
-        "osm_id": 4117041292,
-        "osm_type": "nodes"
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -7.9949884,
-          12.5887495
         ]
       }
     },
@@ -51664,42 +51016,6 @@
     {
       "type": "Feature",
       "properties": {
-        "name": "Universit\u00e9 Bazo",
-        "name:en": null,
-        "amenity": "university",
-        "building": null,
-        "operator:type": null,
-        "capacity:persons": null,
-        "addr:full": null,
-        "addr:city": null,
-        "source": null,
-        "name:bam": null,
-        "name:bobo": null,
-        "name:bzx": null,
-        "name:dog": null,
-        "name:ff": null,
-        "name:mey": null,
-        "name:kvx": null,
-        "name:man": null,
-        "name:myl": null,
-        "name:ses": null,
-        "name:son": null,
-        "name:snk": null,
-        "name:taq": null,
-        "osm_id": 6362379300,
-        "osm_type": "nodes"
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -8.0274063,
-          12.6525381
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
         "name": "Bleuets jardin d'enfants",
         "name:en": null,
         "amenity": "school",
@@ -57316,42 +56632,6 @@
     {
       "type": "Feature",
       "properties": {
-        "name": "Universit\u00e9 Africaine Moderne",
-        "name:en": null,
-        "amenity": "college",
-        "building": null,
-        "operator:type": "private",
-        "capacity:persons": null,
-        "addr:full": null,
-        "addr:city": null,
-        "source": null,
-        "name:bam": null,
-        "name:bobo": null,
-        "name:bzx": null,
-        "name:dog": null,
-        "name:ff": null,
-        "name:mey": null,
-        "name:kvx": null,
-        "name:man": null,
-        "name:myl": null,
-        "name:ses": null,
-        "name:son": null,
-        "name:snk": null,
-        "name:taq": null,
-        "osm_id": 3463649362,
-        "osm_type": "nodes"
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -8.0281127,
-          12.6236829
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
         "name": "\u00c9cole de Formation Sanitaire",
         "name:en": null,
         "amenity": "college",
@@ -57424,78 +56704,6 @@
     {
       "type": "Feature",
       "properties": {
-        "name": "Faculte de Pharmacie",
-        "name:en": null,
-        "amenity": "university",
-        "building": null,
-        "operator:type": null,
-        "capacity:persons": null,
-        "addr:full": null,
-        "addr:city": "Bamako",
-        "source": null,
-        "name:bam": null,
-        "name:bobo": null,
-        "name:bzx": null,
-        "name:dog": null,
-        "name:ff": null,
-        "name:mey": null,
-        "name:kvx": null,
-        "name:man": null,
-        "name:myl": null,
-        "name:ses": null,
-        "name:son": null,
-        "name:snk": null,
-        "name:taq": null,
-        "osm_id": 6025170306,
-        "osm_type": "nodes"
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -7.9952282,
-          12.6704037
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "name": "Ecole priveBastan",
-        "name:en": null,
-        "amenity": "university",
-        "building": null,
-        "operator:type": null,
-        "capacity:persons": null,
-        "addr:full": null,
-        "addr:city": null,
-        "source": null,
-        "name:bam": null,
-        "name:bobo": null,
-        "name:bzx": null,
-        "name:dog": null,
-        "name:ff": null,
-        "name:mey": null,
-        "name:kvx": null,
-        "name:man": null,
-        "name:myl": null,
-        "name:ses": null,
-        "name:son": null,
-        "name:snk": null,
-        "name:taq": null,
-        "osm_id": 5751804942,
-        "osm_type": "nodes"
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -7.9156923,
-          12.6305132
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
         "name": "Ecole priv\u00e9e college horizon",
         "name:en": null,
         "amenity": "school",
@@ -57562,42 +56770,6 @@
         "coordinates": [
           -7.9035,
           14.2471167
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "name": "Institut Universitaire priv\u00e9e Talibi",
-        "name:en": null,
-        "amenity": "school",
-        "building": null,
-        "operator:type": null,
-        "capacity:persons": null,
-        "addr:full": null,
-        "addr:city": null,
-        "source": null,
-        "name:bam": null,
-        "name:bobo": null,
-        "name:bzx": null,
-        "name:dog": null,
-        "name:ff": null,
-        "name:mey": null,
-        "name:kvx": null,
-        "name:man": null,
-        "name:myl": null,
-        "name:ses": null,
-        "name:son": null,
-        "name:snk": null,
-        "name:taq": null,
-        "osm_id": 6836356928,
-        "osm_type": "nodes"
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -7.9168148,
-          12.6740284
         ]
       }
     },
@@ -58390,42 +57562,6 @@
         "coordinates": [
           -8.0354714,
           12.6324021
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "name": "Universit\u00e9 MANDE BUKARI",
-        "name:en": "UMB",
-        "amenity": "school",
-        "building": null,
-        "operator:type": null,
-        "capacity:persons": null,
-        "addr:full": null,
-        "addr:city": null,
-        "source": null,
-        "name:bam": null,
-        "name:bobo": null,
-        "name:bzx": null,
-        "name:dog": null,
-        "name:ff": null,
-        "name:mey": null,
-        "name:kvx": null,
-        "name:man": null,
-        "name:myl": null,
-        "name:ses": null,
-        "name:son": null,
-        "name:snk": null,
-        "name:taq": null,
-        "osm_id": 5347675623,
-        "osm_type": "nodes"
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -8.0328305,
-          12.6315782
         ]
       }
     },
@@ -60772,42 +59908,6 @@
     {
       "type": "Feature",
       "properties": {
-        "name": "Centre de Couture",
-        "name:en": null,
-        "amenity": "university",
-        "building": null,
-        "operator:type": null,
-        "capacity:persons": null,
-        "addr:full": null,
-        "addr:city": null,
-        "source": null,
-        "name:bam": null,
-        "name:bobo": null,
-        "name:bzx": null,
-        "name:dog": null,
-        "name:ff": null,
-        "name:mey": null,
-        "name:kvx": null,
-        "name:man": null,
-        "name:myl": null,
-        "name:ses": null,
-        "name:son": null,
-        "name:snk": null,
-        "name:taq": null,
-        "osm_id": 7722282550,
-        "osm_type": "nodes"
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -9.483078,
-          13.0379648
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
         "name": "Complexe Scolaire Baba Bathily",
         "name:en": null,
         "amenity": "school",
@@ -63112,42 +62212,6 @@
     {
       "type": "Feature",
       "properties": {
-        "name": "Facult\u00e9 de Droit Priv\u00e9",
-        "name:en": null,
-        "amenity": "university",
-        "building": null,
-        "operator:type": "public",
-        "capacity:persons": null,
-        "addr:full": "Colline de Badalabougou, Bamako, Mali",
-        "addr:city": null,
-        "source": "local_knowledge;oif-dfen_carteinnov",
-        "name:bam": null,
-        "name:bobo": null,
-        "name:bzx": null,
-        "name:dog": null,
-        "name:ff": null,
-        "name:mey": null,
-        "name:kvx": null,
-        "name:man": null,
-        "name:myl": null,
-        "name:ses": null,
-        "name:son": null,
-        "name:snk": null,
-        "name:taq": null,
-        "osm_id": 3198309298,
-        "osm_type": "nodes"
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -7.9897219,
-          12.6083191
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
         "name": "Fondamentale R\u00e9veil",
         "name:en": null,
         "amenity": "school",
@@ -64042,42 +63106,6 @@
         "coordinates": [
           -7.972462,
           12.5866015
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "name": "Facult\u00e9 de Th\u00e9ologie et de Missiologie \u00c9vang\u00e9lique du Sahel",
-        "name:en": "FATMES (Sahel College of Theology and Evangelical Missiology)",
-        "amenity": "school",
-        "building": null,
-        "operator:type": null,
-        "capacity:persons": null,
-        "addr:full": null,
-        "addr:city": null,
-        "source": null,
-        "name:bam": null,
-        "name:bobo": null,
-        "name:bzx": null,
-        "name:dog": null,
-        "name:ff": null,
-        "name:mey": null,
-        "name:kvx": null,
-        "name:man": null,
-        "name:myl": null,
-        "name:ses": null,
-        "name:son": null,
-        "name:snk": null,
-        "name:taq": null,
-        "osm_id": 4594064097,
-        "osm_type": "nodes"
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -7.9696402,
-          12.587238
         ]
       }
     },
@@ -65092,42 +64120,6 @@
     {
       "type": "Feature",
       "properties": {
-        "name": "ECOLE ECOTEC",
-        "name:en": null,
-        "amenity": "university",
-        "building": null,
-        "operator:type": null,
-        "capacity:persons": null,
-        "addr:full": null,
-        "addr:city": null,
-        "source": null,
-        "name:bam": null,
-        "name:bobo": null,
-        "name:bzx": null,
-        "name:dog": null,
-        "name:ff": null,
-        "name:mey": null,
-        "name:kvx": null,
-        "name:man": null,
-        "name:myl": null,
-        "name:ses": null,
-        "name:son": null,
-        "name:snk": null,
-        "name:taq": null,
-        "osm_id": 7691254085,
-        "osm_type": "nodes"
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -7.9841193,
-          12.5720163
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
         "name": "\u00c9cole priv\u00e9e Alikaou Blen 1er cycle",
         "name:en": null,
         "amenity": "school",
@@ -65590,42 +64582,6 @@
         "coordinates": [
           -3.0007338,
           16.755523
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "name": "Institue universitaire Ouagadou",
-        "name:en": null,
-        "amenity": "school",
-        "building": null,
-        "operator:type": null,
-        "capacity:persons": null,
-        "addr:full": null,
-        "addr:city": null,
-        "source": null,
-        "name:bam": null,
-        "name:bobo": null,
-        "name:bzx": null,
-        "name:dog": null,
-        "name:ff": null,
-        "name:mey": null,
-        "name:kvx": null,
-        "name:man": null,
-        "name:myl": null,
-        "name:ses": null,
-        "name:son": null,
-        "name:snk": null,
-        "name:taq": null,
-        "osm_id": 3592514695,
-        "osm_type": "nodes"
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -8.0342711,
-          12.6291098
         ]
       }
     },
@@ -87736,42 +86692,6 @@
     {
       "type": "Feature",
       "properties": {
-        "name": "Rectorat de l'Universit\u00e9 des Sciences Techniques et des Technologies De Bamako",
-        "name:en": null,
-        "amenity": "college",
-        "building": null,
-        "operator:type": null,
-        "capacity:persons": null,
-        "addr:full": null,
-        "addr:city": null,
-        "source": null,
-        "name:bam": null,
-        "name:bobo": null,
-        "name:bzx": null,
-        "name:dog": null,
-        "name:ff": null,
-        "name:mey": null,
-        "name:kvx": null,
-        "name:man": null,
-        "name:myl": null,
-        "name:ses": null,
-        "name:son": null,
-        "name:snk": null,
-        "name:taq": null,
-        "osm_id": 3468137909,
-        "osm_type": "nodes"
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -8.0339006,
-          12.6359591
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
         "name": "Institut Canadien de Langue en Afrique",
         "name:en": null,
         "amenity": "college",
@@ -88486,186 +87406,6 @@
         "coordinates": [
           -6.3029473,
           13.4257401
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "name": "Universit\u00e9 Priv\u00e9e les grand Bianson",
-        "name:en": null,
-        "amenity": "university",
-        "building": null,
-        "operator:type": null,
-        "capacity:persons": null,
-        "addr:full": null,
-        "addr:city": null,
-        "source": null,
-        "name:bam": null,
-        "name:bobo": null,
-        "name:bzx": null,
-        "name:dog": null,
-        "name:ff": null,
-        "name:mey": null,
-        "name:kvx": null,
-        "name:man": null,
-        "name:myl": null,
-        "name:ses": null,
-        "name:son": null,
-        "name:snk": null,
-        "name:taq": null,
-        "osm_id": 7741512986,
-        "osm_type": "nodes"
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -9.4900867,
-          13.0471815
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "name": null,
-        "name:en": null,
-        "amenity": "university",
-        "building": null,
-        "operator:type": null,
-        "capacity:persons": null,
-        "addr:full": null,
-        "addr:city": null,
-        "source": null,
-        "name:bam": null,
-        "name:bobo": null,
-        "name:bzx": null,
-        "name:dog": null,
-        "name:ff": null,
-        "name:mey": null,
-        "name:kvx": null,
-        "name:man": null,
-        "name:myl": null,
-        "name:ses": null,
-        "name:son": null,
-        "name:snk": null,
-        "name:taq": null,
-        "osm_id": 12652167823,
-        "osm_type": "nodes"
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -6.3027791,
-          13.4254855
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "name": "Amphith\u00e9atre;Amphitheatre 500 places De l'Universit\u00e9 de S\u00e9gou;Amphitheatre",
-        "name:en": null,
-        "amenity": "university",
-        "building": null,
-        "operator:type": null,
-        "capacity:persons": null,
-        "addr:full": null,
-        "addr:city": null,
-        "source": null,
-        "name:bam": null,
-        "name:bobo": null,
-        "name:bzx": null,
-        "name:dog": null,
-        "name:ff": null,
-        "name:mey": null,
-        "name:kvx": null,
-        "name:man": null,
-        "name:myl": null,
-        "name:ses": null,
-        "name:son": null,
-        "name:snk": null,
-        "name:taq": null,
-        "osm_id": 12652167824,
-        "osm_type": "nodes"
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -6.3032598,
-          13.4262901
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "name": "Amphi Pr\u00e9fabriqu\u00e9",
-        "name:en": null,
-        "amenity": "university",
-        "building": null,
-        "operator:type": "community",
-        "capacity:persons": null,
-        "addr:full": null,
-        "addr:city": null,
-        "source": null,
-        "name:bam": null,
-        "name:bobo": null,
-        "name:bzx": null,
-        "name:dog": null,
-        "name:ff": null,
-        "name:mey": null,
-        "name:kvx": null,
-        "name:man": null,
-        "name:myl": null,
-        "name:ses": null,
-        "name:son": null,
-        "name:snk": null,
-        "name:taq": null,
-        "osm_id": 12652167825,
-        "osm_type": "nodes"
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -6.3021204,
-          13.4257237
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "name": "Rectorat",
-        "name:en": null,
-        "amenity": "university",
-        "building": null,
-        "operator:type": null,
-        "capacity:persons": null,
-        "addr:full": null,
-        "addr:city": null,
-        "source": null,
-        "name:bam": null,
-        "name:bobo": null,
-        "name:bzx": null,
-        "name:dog": null,
-        "name:ff": null,
-        "name:mey": null,
-        "name:kvx": null,
-        "name:man": null,
-        "name:myl": null,
-        "name:ses": null,
-        "name:son": null,
-        "name:snk": null,
-        "name:taq": null,
-        "osm_id": 12652167826,
-        "osm_type": "nodes"
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -6.3020978,
-          13.4251667
         ]
       }
     },
@@ -91042,78 +89782,6 @@
         "coordinates": [
           -10.725486,
           15.1306222
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "name": "Laboratoire",
-        "name:en": null,
-        "amenity": "university",
-        "building": null,
-        "operator:type": null,
-        "capacity:persons": null,
-        "addr:full": null,
-        "addr:city": null,
-        "source": null,
-        "name:bam": null,
-        "name:bobo": null,
-        "name:bzx": null,
-        "name:dog": null,
-        "name:ff": null,
-        "name:mey": null,
-        "name:kvx": null,
-        "name:man": null,
-        "name:myl": null,
-        "name:ses": null,
-        "name:son": null,
-        "name:snk": null,
-        "name:taq": null,
-        "osm_id": 12652167827,
-        "osm_type": "nodes"
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -6.3018296,
-          13.4246929
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "name": "Boubou Sow",
-        "name:en": null,
-        "amenity": "university",
-        "building": null,
-        "operator:type": null,
-        "capacity:persons": null,
-        "addr:full": null,
-        "addr:city": null,
-        "source": null,
-        "name:bam": null,
-        "name:bobo": null,
-        "name:bzx": null,
-        "name:dog": null,
-        "name:ff": null,
-        "name:mey": null,
-        "name:kvx": null,
-        "name:man": null,
-        "name:myl": null,
-        "name:ses": null,
-        "name:son": null,
-        "name:snk": null,
-        "name:taq": null,
-        "osm_id": 11463073768,
-        "osm_type": "nodes"
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -11.4535441,
-          14.4559074
         ]
       }
     },
@@ -98674,42 +97342,6 @@
         "coordinates": [
           -0.4233893,
           16.9678669
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "name": "TECNO LAB ISTA",
-        "name:en": null,
-        "amenity": "university",
-        "building": null,
-        "operator:type": null,
-        "capacity:persons": null,
-        "addr:full": null,
-        "addr:city": null,
-        "source": null,
-        "name:bam": null,
-        "name:bobo": null,
-        "name:bzx": null,
-        "name:dog": null,
-        "name:ff": null,
-        "name:mey": null,
-        "name:kvx": null,
-        "name:man": null,
-        "name:myl": null,
-        "name:ses": null,
-        "name:son": null,
-        "name:snk": null,
-        "name:taq": null,
-        "osm_id": 9356230418,
-        "osm_type": "nodes"
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -8.0126631,
-          12.5746203
         ]
       }
     },
@@ -184102,42 +182734,6 @@
         "coordinates": [
           -6.5239167,
           12.6424167
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "name": "Facult\u00e9 de M\u00e9d\u00e9cine et d'Odontostomatologie (FMOS)",
-        "name:en": null,
-        "amenity": "university",
-        "building": null,
-        "operator:type": "public",
-        "capacity:persons": null,
-        "addr:full": "Koulouba, en face du Centre Hospitalier Universotaire (CHU), Bamako, Mali",
-        "addr:city": "Bamako",
-        "source": "local_knowledge;oif-dfen_carteinnov",
-        "name:bam": null,
-        "name:bobo": null,
-        "name:bzx": null,
-        "name:dog": null,
-        "name:ff": null,
-        "name:mey": null,
-        "name:kvx": null,
-        "name:man": null,
-        "name:myl": null,
-        "name:ses": null,
-        "name:son": null,
-        "name:snk": null,
-        "name:taq": null,
-        "osm_id": 4644997421,
-        "osm_type": "nodes"
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -7.9954337,
-          12.6708862
         ]
       }
     },
@@ -348844,42 +347440,6 @@
     {
       "type": "Feature",
       "properties": {
-        "name": "Universit\u00e9 Montplaisir Tunis Bamako",
-        "name:en": null,
-        "amenity": "college",
-        "building": null,
-        "operator:type": null,
-        "capacity:persons": null,
-        "addr:full": null,
-        "addr:city": null,
-        "source": null,
-        "name:bam": null,
-        "name:bobo": null,
-        "name:bzx": null,
-        "name:dog": null,
-        "name:ff": null,
-        "name:mey": null,
-        "name:kvx": null,
-        "name:man": null,
-        "name:myl": null,
-        "name:ses": null,
-        "name:son": null,
-        "name:snk": null,
-        "name:taq": null,
-        "osm_id": 8583352717,
-        "osm_type": "nodes"
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -8.0315635,
-          12.6289383
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
         "name": "BATIMAKANA",
         "name:en": null,
         "amenity": "school",
@@ -357160,42 +355720,6 @@
     {
       "type": "Feature",
       "properties": {
-        "name": "Institut Universitaire de Formation Professionnelle",
-        "name:en": null,
-        "amenity": "college",
-        "building": null,
-        "operator:type": null,
-        "capacity:persons": null,
-        "addr:full": null,
-        "addr:city": null,
-        "source": null,
-        "name:bam": null,
-        "name:bobo": null,
-        "name:bzx": null,
-        "name:dog": null,
-        "name:ff": null,
-        "name:mey": null,
-        "name:kvx": null,
-        "name:man": null,
-        "name:myl": null,
-        "name:ses": null,
-        "name:son": null,
-        "name:snk": null,
-        "name:taq": null,
-        "osm_id": 9739978917,
-        "osm_type": "nodes"
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -6.3030599,
-          13.4246303
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
         "name": "SOURANGO mobile",
         "name:en": null,
         "amenity": "school",
@@ -362092,78 +360616,6 @@
     {
       "type": "Feature",
       "properties": {
-        "name": "Campus Universitaire Femme",
-        "name:en": null,
-        "amenity": "university",
-        "building": null,
-        "operator:type": null,
-        "capacity:persons": null,
-        "addr:full": null,
-        "addr:city": null,
-        "source": null,
-        "name:bam": null,
-        "name:bobo": null,
-        "name:bzx": null,
-        "name:dog": null,
-        "name:ff": null,
-        "name:mey": null,
-        "name:kvx": null,
-        "name:man": null,
-        "name:myl": null,
-        "name:ses": null,
-        "name:son": null,
-        "name:snk": null,
-        "name:taq": null,
-        "osm_id": 12422795000,
-        "osm_type": "nodes"
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -6.3009118,
-          13.429849
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "name": "Campus Universitaire homme",
-        "name:en": null,
-        "amenity": "university",
-        "building": null,
-        "operator:type": null,
-        "capacity:persons": null,
-        "addr:full": null,
-        "addr:city": null,
-        "source": null,
-        "name:bam": null,
-        "name:bobo": null,
-        "name:bzx": null,
-        "name:dog": null,
-        "name:ff": null,
-        "name:mey": null,
-        "name:kvx": null,
-        "name:man": null,
-        "name:myl": null,
-        "name:ses": null,
-        "name:son": null,
-        "name:snk": null,
-        "name:taq": null,
-        "osm_id": 12422887801,
-        "osm_type": "nodes"
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -6.312028,
-          13.4238807
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
         "name": "MINANKOFA",
         "name:en": null,
         "amenity": "school",
@@ -364354,42 +362806,6 @@
         "coordinates": [
           -5.2737258,
           13.5964057
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "name": "Universite Privee Attawoune",
-        "name:en": null,
-        "amenity": "university",
-        "building": null,
-        "operator:type": null,
-        "capacity:persons": null,
-        "addr:full": null,
-        "addr:city": "Bamako",
-        "source": null,
-        "name:bam": null,
-        "name:bobo": null,
-        "name:bzx": null,
-        "name:dog": null,
-        "name:ff": null,
-        "name:mey": null,
-        "name:kvx": null,
-        "name:man": null,
-        "name:myl": null,
-        "name:ses": null,
-        "name:son": null,
-        "name:snk": null,
-        "name:taq": null,
-        "osm_id": 9994938254,
-        "osm_type": "nodes"
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -7.9635329,
-          12.5730425
         ]
       }
     },

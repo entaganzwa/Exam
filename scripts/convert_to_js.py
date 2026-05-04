@@ -1,8 +1,8 @@
 import csv
 import json
 
-input_file = 'mali_conflicts.csv'
-output_file = 'data.js'
+input_file = 'data/processed/mali_conflicts.csv'
+output_file = 'js/data.js'
 
 conflicts = []
 

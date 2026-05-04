@@ -39,8 +39,25 @@ def process_spatial_analysis():
     with open(SCHOOLS_GEOJSON, 'r', encoding='utf-8') as f:
         schools_data = json.load(f)
     
-    all_schools = schools_data.get('features', [])
-    print(f"Loaded {len(all_schools)} school facilities.")
+    all_schools_raw = schools_data.get('features', [])
+    print(f"Loaded {len(all_schools_raw)} school facilities.")
+
+    # Define allowed school types
+    ALLOWED_TYPES = ['school', 'kindergarten', 'college', 'lycée']
+    # Define keywords that indicate higher education to be excluded
+    EXCLUDE_KEYWORDS = ['université', 'university', 'faculté', 'faculty', 'rectorat', 'universitaire']
+    
+    all_schools = []
+    for s in all_schools_raw:
+        props = s.get('properties', {})
+        s_type = props.get('amenity')
+        s_name = (props.get('name') or '').lower()
+        
+        if s_type in ALLOWED_TYPES:
+            if not any(keyword in s_name for keyword in EXCLUDE_KEYWORDS):
+                all_schools.append(s)
+                
+    print(f"Filtered to {len(all_schools)} kindergarten, primary and secondary schools.")
 
     schools_within_1km = []
     schools_outside_1km = []

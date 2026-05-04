@@ -14,32 +14,50 @@ def haversine(lat1, lon1, lat2, lon2):
     return R * c
 
 # 2. Load the schools from GeoJSON
-geojson_file = 'hotosm_mli_education_facilities_points_geojson.geojson'
+geojson_file = 'data/raw/hotosm_mli_education_facilities_points_geojson.geojson'
 with open(geojson_file, 'r', encoding='utf-8') as f:
     data = json.load(f)
+
+# Define allowed school types
+ALLOWED_TYPES = ['school', 'kindergarten', 'college', 'lycée']
+
+# Define keywords that indicate higher education to be excluded
+EXCLUDE_KEYWORDS = ['université', 'university', 'faculté', 'faculty', 'rectorat', 'universitaire']
 
 schools = []
 for feature in data['features']:
     props = feature['properties']
     geom = feature['geometry']
+    
+    school_name = (props.get('name') or 'Unnamed School').lower()
+    school_type = props.get('amenity') or 'education'
+    
+    # Check type
+    if school_type not in ALLOWED_TYPES:
+        continue
+    
+    # Check name for university keywords
+    if any(keyword in school_name for keyword in EXCLUDE_KEYWORDS):
+        continue
+        
     if geom['type'] == 'Point':
         school = {
             'name': props.get('name') or 'Unnamed School',
-            'type': props.get('amenity') or 'education',
+            'type': school_type,
             'lat': geom['coordinates'][1],
             'lon': geom['coordinates'][0]
         }
         schools.append(school)
 
 # 3. Save ALL schools to a simple CSV first
-with open('mali_schools_all.csv', 'w', encoding='utf-8', newline='') as f:
+with open('data/processed/mali_schools_all.csv', 'w', encoding='utf-8', newline='') as f:
     writer = csv.DictWriter(f, fieldnames=['name', 'type', 'lat', 'lon'])
     writer.writeheader()
     writer.writerows(schools)
 
 # 4. Load conflict data
 conflicts = []
-with open('mali_conflicts.csv', 'r', encoding='utf-8') as f:
+with open('data/processed/mali_conflicts.csv', 'r', encoding='utf-8') as f:
     reader = csv.DictReader(f)
     for row in reader:
         conflicts.append({
@@ -67,11 +85,11 @@ for school in schools:
         at_risk_schools.append(school_copy)
 
 # 6. Save at-risk schools to a new CSV
-with open('at_risk_schools.csv', 'w', encoding='utf-8', newline='') as f:
+with open('data/processed/at_risk_schools.csv', 'w', encoding='utf-8', newline='') as f:
     writer = csv.DictWriter(f, fieldnames=['name', 'type', 'lat', 'lon', 'nearby_conflict_date'])
     writer.writeheader()
     writer.writerows(at_risk_schools)
 
-print(f"Total schools found: {len(schools)}")
+print(f"Total schools found (filtered): {len(schools)}")
 print(f"Schools within 1km of conflict: {len(at_risk_schools)}")
-print("Files saved: 'mali_schools_all.csv' and 'at_risk_schools.csv'")
+print("Files saved: 'data/processed/mali_schools_all.csv' and 'data/processed/at_risk_schools.csv'")
