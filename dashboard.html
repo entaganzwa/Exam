@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Global Conflict Dashboard</title>
+    <!-- Bootstrap for styling (cards and layout) -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Chart.js for the charts -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        body {
+            background-color: #f4f7f6;
+            padding-top: 50px;
+        }
+        .card {
+            border: none;
+            border-radius: 15px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            margin-bottom: 30px;
+            transition: transform 0.2s;
+        }
+        .card:hover {
+            transform: translateY(-5px);
+        }
+        .card-title {
+            font-weight: 700;
+            color: #2c3e50;
+            border-bottom: 2px solid #eef2f3;
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+        }
+        .container {
+            max-width: 1200px;
+        }
+        header {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+        header h1 {
+            font-weight: 800;
+            color: #1a1a1a;
+        }
+        header p {
+            color: #666;
+            font-size: 1.1rem;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <header>
+            <h1>Global Conflict Data Insights</h1>
+            <p>Visualizing trends and impact of conflict events worldwide</p>
+        </header>
+
+        <div class="row">
+            <!-- Chart 1: Top 10 Countries -->
+            <div class="col-md-6">
+                <div class="card p-4">
+                    <h5 class="card-title">Top 10 Countries by Conflict Events</h5>
+                    <canvas id="chartCountries"></canvas>
+                </div>
+            </div>
+
+            <!-- Chart 2: Events per Year -->
+            <div class="col-md-6">
+                <div class="card p-4">
+                    <h5 class="card-title">Conflict Events Over Time</h5>
+                    <canvas id="chartYears"></canvas>
+                </div>
+            </div>
+
+            <!-- Chart 3: Events by Category -->
+            <div class="col-md-6">
+                <div class="card p-4">
+                    <h5 class="card-title">Conflict Events by Category</h5>
+                    <canvas id="chartCategories"></canvas>
+                </div>
+            </div>
+
+            <!-- Chart 4: Fatalities per Year -->
+            <div class="col-md-6">
+                <div class="card p-4">
+                    <h5 class="card-title">Total Fatalities Over Time</h5>
+                    <canvas id="chartFatalities"></canvas>
+                </div>
+            </div>
+        </div>
+
+        <footer class="text-center mt-5 mb-5">
+            <p class="text-muted small">Data Source: GEDEvent v25.1 Cleaned CSV</p>
+            <a href="index.html" class="btn btn-outline-secondary btn-sm">View Conflict Map</a>
+        </footer>
+    </div>
+
+    <script>
+        // We use 'fetch' to load the data we processed with Python
+        fetch('js/dashboard_data.json')
+            .then(response => response.json())
+            .then(data => {
+                createCharts(data);
+            });
+
+        function createCharts(data) {
+            // Chart 1: Countries (Bar)
+            const countryLabels = Object.keys(data.top_countries);
+            const countryValues = Object.values(data.top_countries);
+            
+            new Chart(document.getElementById('chartCountries'), {
+                type: 'bar',
+                data: {
+                    labels: countryLabels,
+                    datasets: [{
+                        label: 'Number of Events',
+                        data: countryValues,
+                        backgroundColor: '#3498db',
+                        borderRadius: 5
+                    }]
+                },
+                options: {
+                    indexAxis: 'y', // Horizontal bar chart
+                    plugins: { legend: { display: false } }
+                }
+            });
+
+            // Chart 2: Years (Line)
+            const yearLabels = Object.keys(data.events_per_year);
+            const yearValues = Object.values(data.events_per_year);
+
+            new Chart(document.getElementById('chartYears'), {
+                type: 'line',
+                data: {
+                    labels: yearLabels,
+                    datasets: [{
+                        label: 'Number of Events',
+                        data: yearValues,
+                        borderColor: '#e67e22',
+                        backgroundColor: 'rgba(230, 126, 34, 0.1)',
+                        fill: true,
+                        tension: 0.3
+                    }]
+                }
+            });
+
+            // Chart 3: Categories (Bar/Doughnut)
+            const catLabels = Object.keys(data.categories);
+            const catValues = Object.values(data.categories);
+
+            new Chart(document.getElementById('chartCategories'), {
+                type: 'bar',
+                data: {
+                    labels: catLabels,
+                    datasets: [{
+                        label: 'Number of Events',
+                        data: catValues,
+                        backgroundColor: ['#2ecc71', '#9b59b6', '#f1c40f'],
+                        borderRadius: 5
+                    }]
+                },
+                options: {
+                    plugins: { legend: { display: false } }
+                }
+            });
+
+            // Chart 4: Fatalities (Bar)
+            const fatLabels = Object.keys(data.fatalities_per_year);
+            const fatValues = Object.values(data.fatalities_per_year);
+
+            new Chart(document.getElementById('chartFatalities'), {
+                type: 'bar',
+                data: {
+                    labels: fatLabels,
+                    datasets: [{
+                        label: 'Total Fatalities',
+                        data: fatValues,
+                        backgroundColor: '#e74c3c',
+                        borderRadius: 5
+                    }]
+                }
+            });
+        }
+    </script>
+</body>
+</html>
