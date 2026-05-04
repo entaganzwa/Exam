@@ -9,48 +9,103 @@
     <!-- Chart.js for the charts -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <style>
+        :root {
+            --conflict-red: #e63946;
+            --risk-red: #800000;
+            --safe-blue: #457b9d;
+            --text-dark: #1d3557;
+            --bg-light: #f1faee;
+            --card-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+
         body {
-            background-color: #f4f7f6;
-            padding-top: 50px;
+            background-color: #f8f9fa;
+            font-family: 'Inter', sans-serif;
+            padding-top: 20px;
         }
         .card {
             border: none;
-            border-radius: 15px;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            border-radius: 12px;
+            box-shadow: var(--card-shadow);
             margin-bottom: 30px;
             transition: transform 0.2s;
+            background: white;
         }
         .card:hover {
             transform: translateY(-5px);
         }
         .card-title {
             font-weight: 700;
-            color: #2c3e50;
-            border-bottom: 2px solid #eef2f3;
-            padding-bottom: 10px;
+            color: var(--text-dark);
+            border-bottom: 2px solid #f1f1f1;
+            padding-bottom: 15px;
             margin-bottom: 20px;
+            font-size: 1.1rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
         }
         .container {
             max-width: 1200px;
         }
-        header {
-            text-align: center;
-            margin-bottom: 50px;
+        .dashboard-header {
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: var(--card-shadow);
+            margin-bottom: 40px;
+            position: relative;
         }
-        header h1 {
+        .dashboard-header h1 {
             font-weight: 800;
-            color: #1a1a1a;
+            color: var(--text-dark);
+            margin-bottom: 10px;
         }
-        header p {
+        .dashboard-header p {
             color: #666;
             font-size: 1.1rem;
+            margin-bottom: 0;
+        }
+        .return-btn {
+            position: absolute;
+            top: 30px;
+            right: 30px;
+            text-decoration: none;
+            color: var(--safe-blue);
+            font-weight: 700;
+            font-size: 14px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 20px;
+            border: 2px solid var(--safe-blue);
+            border-radius: 30px;
+            transition: all 0.2s;
+        }
+        .return-btn:hover {
+            background: var(--safe-blue);
+            color: white;
+        }
+        .data-link {
+            text-decoration: none;
+            color: var(--text-dark);
+            display: block;
+            padding: 10px;
+            border-radius: 8px;
+            background: #f1f1f1;
+            margin-bottom: 10px;
+            font-weight: 600;
+            transition: background 0.2s;
+        }
+        .data-link:hover {
+            background: #e2e2e2;
         }
     </style>
 </head>
 <body>
 
     <div class="container">
-        <header>
+        <header class="dashboard-header">
+            <a href="index.html" class="return-btn">← Back to Portal</a>
             <h1>Global Conflict Data Insights</h1>
             <p>Visualizing trends and impact of conflict events worldwide</p>
         </header>
@@ -89,9 +144,36 @@
             </div>
         </div>
 
+        <div class="row mt-4">
+            <div class="col-12">
+                <div class="card p-4">
+                    <h5 class="card-title">Explore Raw Datasets</h5>
+                    <div class="row">
+                        <div class="col-md-4">
+                            <a href="preview_at_risk_schools.html" class="data-link">🏫 At-Risk Schools</a>
+                        </div>
+                        <div class="col-md-4">
+                            <a href="preview_ged_events.html" class="data-link">💥 Global Conflict Events</a>
+                        </div>
+                        <div class="col-md-4">
+                            <a href="preview_mali_conflicts.html" class="data-link">🇲🇱 Mali Conflicts</a>
+                        </div>
+                        <div class="col-md-4">
+                            <a href="preview_mali_schools.html" class="data-link">📚 All Mali Schools</a>
+                        </div>
+                        <div class="col-md-4">
+                            <a href="preview_schools_far.html" class="data-link">✅ Schools (Safe)</a>
+                        </div>
+                        <div class="col-md-4">
+                            <a href="preview_schools_near.html" class="data-link">⚠️ Schools (At-Risk Geo)</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
         <footer class="text-center mt-5 mb-5">
             <p class="text-muted small">Data Source: GEDEvent v25.1 Cleaned CSV</p>
-            <a href="index.html" class="btn btn-outline-secondary btn-sm">View Conflict Map</a>
         </footer>
     </div>
 

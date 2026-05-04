@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mali: Conflict Incident Map</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <style>
+        :root {
+            --conflict-red: #e63946;
+            --text-dark: #1d3557;
+            --bg-light: #f8f9fa;
+        }
+        body { margin: 0; padding: 0; font-family: 'Inter', sans-serif; background-color: var(--bg-light); }
+        #map { height: 60vh; width: 100%; border-bottom: 2px solid #ddd; }
+        .content-container { padding: 30px; max-width: 1200px; margin: 0 auto; }
+        .header-box { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; }
+        .return-btn { text-decoration: none; color: #666; font-weight: 700; border: 2px solid #ddd; padding: 8px 20px; border-radius: 30px; transition: all 0.2s; }
+        .return-btn:hover { background: #eee; }
+        .data-preview { background: white; padding: 25px; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); margin-top: 30px; }
+        .table { font-size: 14px; }
+        .legend { background: white; padding: 10px; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.1); line-height: 18px; font-size: 12px; }
+        .legend i { width: 12px; height: 12px; float: left; margin-right: 8px; border-radius: 50%; opacity: 0.7; }
+    </style>
+</head>
+<body>
+
+    <div id="map"></div>
+
+    <div class="content-container">
+        <div class="header-box">
+            <div>
+                <h1 style="font-weight: 800; color: var(--text-dark); margin: 0;">Mali Conflict Incidents</h1>
+                <p style="color: #666; margin: 5px 0 0 0;">Visualizing recorded conflict events and fatalities</p>
+            </div>
+            <a href="index.html" class="return-btn">← Back to Portal</a>
+        </div>
+
+        <div class="data-preview">
+            <h5 style="font-weight: 700; margin-bottom: 20px; text-transform: uppercase; font-size: 13px; color: #888;">Data Preview (Top 5 Rows)</h5>
+            <div class="table-responsive">
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th>Year</th>
+                            <th>Conflict Name</th>
+                            <th>Side A</th>
+                            <th>Side B</th>
+                            <th>Location</th>
+                            <th>Fatalities</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>1990</td><td>Mali: Azawad</td><td>Government of Mali</td><td>MPA</td><td>Tidarmene town</td><td>4</td></tr>
+                        <tr><td>1990</td><td>Mali: Azawad</td><td>Government of Mali</td><td>MPA</td><td>Menaka town</td><td>4</td></tr>
+                        <tr><td>1990</td><td>Mali: Azawad</td><td>Government of Mali</td><td>MPA</td><td>Northern Mali</td><td>250</td></tr>
+                        <tr><td>1990</td><td>Mali: Azawad</td><td>Government of Mali</td><td>MPA</td><td>Ti-n-Essako town</td><td>4</td></tr>
+                        <tr><td>1990</td><td>Mali: Azawad</td><td>Government of Mali</td><td>MPA</td><td>Tayekaren camp</td><td>40</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script src="js/data.js"></script>
+    <script>
+        const map = L.map('map').setView([17.0, -4.0], 6);
+        L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
+            attribution: '&copy; CARTO'
+        }).addTo(map);
+
+        conflictData.forEach(event => {
+            const radius = Math.sqrt(event.damages) * 1.5 + 4;
+            L.circleMarker([event.lat, event.lng], {
+                radius: radius,
+                color: '#e63946',
+                weight: 1,
+                fillColor: '#e63946',
+                fillOpacity: 0.4
+            }).bindPopup(`
+                <b>${event.cause}</b><br>
+                Location: ${event.location}<br>
+                Fatalities: ${event.damages}
+            `).addTo(map);
+        });
+
+        const legend = L.control({position: 'bottomright'});
+        legend.onAdd = function () {
+            const div = L.DomUtil.create('div', 'legend');
+            div.innerHTML = '<i></i> Conflict Incidents';
+            div.style.backgroundColor = 'white';
+            div.querySelector('i').style.backgroundColor = '#e63946';
+            return div;
+        };
+        legend.addTo(map);
+    </script>
+</body>
+</html>
