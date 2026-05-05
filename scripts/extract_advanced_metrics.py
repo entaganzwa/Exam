@@ -2,18 +2,17 @@ import csv
 import json
 from collections import Counter, defaultdict
 
-INPUT_CSV = 'data/processed/mali_conflicts.csv'
+INPUT_CSV = 'data/processed/GEDEvent_v25_1_cleaned.csv'
 OUTPUT_JSON = 'js/advanced_dashboard_data.json'
 
 def process():
-    # 1. Top 10 countries (For Mali file, this will just be Mali)
+    # 1. Top 10 countries
     country_counts = Counter()
     
-    # 2. Events per region (In Mali file, this is likely just "Africa")
+    # 2. Events per region per year
     region_year_counts = defaultdict(lambda: defaultdict(int))
     
-    # 3. Events by category (type_of_violence)
-    # Mapping for readability
+    # 3. Events by category
     CATEGORY_MAP = {
         '1': 'State-based',
         '2': 'Non-state',
@@ -21,13 +20,13 @@ def process():
     }
     category_counts = Counter()
     
-    # 4. Severity (Estimated by fatality bands)
+    # 4. Severity
     severity_counts = Counter()
     
-    # 5. Infrastructure damage (Proxy: mentions of 'school' or 'destroy' in descriptions)
+    # 5. Infrastructure damage
     infra_damage_counts = Counter()
 
-    print(f"Reading {INPUT_CSV}...")
+    print(f"Reading global data from {INPUT_CSV}...")
     with open(INPUT_CSV, 'r', encoding='utf-8') as f:
         reader = csv.DictReader(f)
         for row in reader:
@@ -44,7 +43,7 @@ def process():
             cat_name = CATEGORY_MAP.get(cat_code, f"Type {cat_code}")
             category_counts[cat_name] += 1
             
-            # Severity (Based on 'best' fatalities)
+            # Severity
             try:
                 fatalities = int(row['best'])
                 if fatalities == 0: sev = "Low (0)"
@@ -55,15 +54,15 @@ def process():
                 sev = "Unknown"
             severity_counts[sev] += 1
             
-            # Infrastructure Damage (Keyword search in source_headline or where_description)
+            # Infrastructure (Basic keyword search)
             desc = (row['source_headline'] + " " + row['where_description']).lower()
-            if 'school' in desc or 'école' in desc or 'college' in desc or 'lycée' in desc:
+            if any(k in desc for k in ['school', 'école', 'college', 'lycée']):
                 infra_damage_counts['Education'] += 1
-            if 'hospital' in desc or 'health' in desc or 'santé' in desc:
+            if any(k in desc for k in ['hospital', 'health', 'santé', 'clinique']):
                 infra_damage_counts['Health'] += 1
-            if 'bridge' in desc or 'road' in desc or 'pont' in desc:
+            if any(k in desc for k in ['bridge', 'road', 'pont', 'route']):
                 infra_damage_counts['Transport'] += 1
-            if 'market' in desc or 'marché' in desc:
+            if any(k in desc for k in ['market', 'marché', 'shop', 'boutique']):
                 infra_damage_counts['Commerce'] += 1
 
     # Format for Chart.js
