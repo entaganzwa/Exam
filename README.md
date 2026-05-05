@@ -4,6 +4,7 @@ An advanced analytical toolkit for visualizing conflict incidents and identifyin
 
 ## 🔗 Project Links
 - **Interactive Map:** [Conflict & Risk Map](https://entaganzwa.github.io/Exam/conflict_map.html)
+- **Global View:** [Global Conflict Events Map](https://entaganzwa.github.io/Exam/global_map.html)
 - **Facility Analysis:** [School Impact Map](https://entaganzwa.github.io/Exam/school_map.html)
 - **Comprehensive Dashboard:** [Advanced Metrics Dashboard](https://entaganzwa.github.io/Exam/comprehensive_dashboard.html)
 
