@@ -38,9 +38,16 @@
         <div class="row g-4">
             <!-- (1) Top 10 Countries -->
             <div class="col-md-6">
-                <div class="card p-4">
+                <div class="card p-4 h-100">
                     <h5 class="card-title text-center">Global Hotspots: Top 10 Countries</h5>
-                    <canvas id="countryChart"></canvas>
+                    <div class="row align-items-center">
+                        <div class="col-sm-7">
+                            <canvas id="countryChart"></canvas>
+                        </div>
+                        <div class="col-sm-5">
+                            <ol id="countryList" class="small mt-3"></ol>
+                        </div>
+                    </div>
                 </div>
             </div>
 
@@ -105,20 +112,37 @@
             .then(response => response.json())
             .then(data => {
                 
-                // 1. Country Chart
-                new Chart(document.getElementById('countryChart'), {
-                    type: 'bar',
-                    data: {
-                        labels: Object.keys(data.countries),
-                        datasets: [{
-                            label: 'Events',
-                            data: Object.values(data.countries),
-                            backgroundColor: '#0984e3',
-                            borderRadius: 5
-                        }]
-                    },
-                    options: { plugins: { legend: { display: false } } }
-                });
+                // 1. Country Chart & List
+                if (data.countries) {
+                    const countryLabels = Object.keys(data.countries);
+                    const countryValues = Object.values(data.countries);
+                    
+                    // Populate List for fallback
+                    const list = document.getElementById('countryList');
+                    countryLabels.forEach((name, i) => {
+                        const li = document.createElement('li');
+                        li.innerHTML = `<strong>${name}:</strong> ${countryValues[i].toLocaleString()} events`;
+                        list.appendChild(li);
+                    });
+
+                    new Chart(document.getElementById('countryChart'), {
+                        type: 'bar',
+                        data: {
+                            labels: countryLabels,
+                            datasets: [{
+                                label: 'Events',
+                                data: countryValues,
+                                backgroundColor: '#0984e3',
+                                borderRadius: 5
+                            }]
+                        },
+                        options: { 
+                            indexAxis: 'y', // Horizontal is often better for many labels
+                            plugins: { legend: { display: false } },
+                            scales: { x: { beginAtZero: true } }
+                        }
+                    });
+                }
 
                 // 2. Region Chart (Combined Trends)
                 const years = new Set();
