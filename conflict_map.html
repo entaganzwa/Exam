@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mali: Conflict & School Risk Map</title>
+    <title>Mali Education Risk & Conflict Map</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
@@ -13,88 +13,70 @@
             --risk-red: #800000;
             --safe-blue: #457b9d;
             --text-dark: #1d3557;
-            --bg-light: #f1f4f8;
+            --bg-light: #f8f9fa;
         }
-        body, html { margin: 0; padding: 0; height: 100%; font-family: 'Inter', sans-serif; overflow: hidden; }
-        #map { height: 100vh; width: 100vw; }
+        body { margin: 0; padding: 0; font-family: 'Inter', sans-serif; background-color: var(--bg-light); }
+        #map { height: 60vh; width: 100%; border-bottom: 2px solid #ddd; }
+        .content-container { padding: 30px; max-width: 1200px; margin: 0 auto; }
+        .header-box { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; }
+        .return-btn { text-decoration: none; color: #666; font-weight: 700; border: 2px solid #ddd; padding: 8px 20px; border-radius: 30px; transition: all 0.2s; }
+        .return-btn:hover { background: #eee; }
+        .data-preview { background: white; padding: 25px; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); margin-top: 30px; }
+        .table { font-size: 14px; }
+        .legend { background: white; padding: 12px; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.1); line-height: 22px; font-size: 12px; }
+        .legend i { width: 12px; height: 12px; float: left; margin-right: 10px; margin-top: 5px; border-radius: 50%; }
         
-        .map-overlay {
-            position: absolute;
-            top: 20px;
-            left: 50px;
-            z-index: 1000;
-            background: rgba(255, 255, 255, 0.95);
-            padding: 20px;
-            border-radius: 12px;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.15);
-            max-width: 350px;
-            backdrop-filter: blur(5px);
-            border: 1px solid rgba(255,255,255,0.3);
-        }
-
-        .return-btn { 
-            display: inline-block;
-            text-decoration: none; 
-            color: #457b9d; 
-            font-weight: 700; 
-            font-size: 13px;
-            margin-bottom: 15px;
-            transition: all 0.2s; 
-        }
-        .return-btn:hover { color: #1d3557; transform: translateX(-3px); }
-
-        .legend { 
-            background: white; 
-            padding: 15px; 
-            border-radius: 10px; 
-            box-shadow: 0 2px 15px rgba(0,0,0,0.1); 
-            line-height: 24px; 
-            font-size: 13px; 
-            color: #444;
-        }
-        .legend-item { display: flex; align-items: center; gap: 10px; margin-bottom: 4px; }
-        .legend i { width: 14px; height: 14px; border-radius: 50%; display: inline-block; }
-        
-        .filter-container {
-            margin-top: 15px;
-            padding-top: 15px;
-            border-top: 1px solid #eee;
-        }
-
-        .custom-checkbox {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            cursor: pointer;
+        .filter-control {
+            background: white;
+            padding: 10px 15px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
             font-size: 13px;
             font-weight: 600;
-            color: var(--text-dark);
-        }
-        .custom-checkbox input {
-            width: 18px;
-            height: 18px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
             cursor: pointer;
-            accent-color: var(--risk-red);
         }
-
-        .leaflet-popup-content-wrapper { border-radius: 8px; padding: 5px; }
-        .leaflet-popup-content b { font-size: 14px; }
+        .filter-control input { cursor: pointer; }
     </style>
 </head>
 <body>
 
     <div id="map"></div>
 
-    <div class="map-overlay">
-        <a href="index.html" class="return-btn">← Back to Portal</a>
-        <h1 style="font-weight: 800; color: var(--text-dark); margin: 0; font-size: 22px; letter-spacing: -0.5px;">Mali Risk Map</h1>
-        <p style="color: #666; margin: 8px 0 0 0; font-size: 13px; line-height: 1.4;">Visualizing conflict incidents and school safety zones across the region.</p>
-        
-        <div class="filter-container">
-            <label class="custom-checkbox">
-                <input type="checkbox" id="riskFilter">
-                <span>Highlight At-Risk Schools Only</span>
-            </label>
+    <div class="content-container">
+        <div class="header-box">
+            <div>
+                <h1 style="font-weight: 800; color: var(--text-dark); margin: 0;">Mali Education Risk & Conflict Map</h1>
+                <p style="color: #666; margin: 5px 0 0 0;">Interactive visualization of conflict impact on schools</p>
+            </div>
+            <a href="index.html" class="return-btn">← Back to Portal</a>
+        </div>
+
+        <div class="data-preview">
+            <h5 style="font-weight: 700; margin-bottom: 20px; text-transform: uppercase; font-size: 13px; color: #888;">Conflict Data Preview (Top 5 Rows)</h5>
+            <div class="table-responsive">
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th>Year</th>
+                            <th>Conflict Name</th>
+                            <th>Side A</th>
+                            <th>Side B</th>
+                            <th>Location</th>
+                            <th>Fatalities</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>1990</td><td>Mali: Azawad</td><td>Government of Mali</td><td>MPA</td><td>Tidarmene town</td><td>4</td></tr>
+                        <tr><td>1990</td><td>Mali: Azawad</td><td>Government of Mali</td><td>MPA</td><td>Menaka town</td><td>4</td></tr>
+                        <tr><td>1990</td><td>Mali: Azawad</td><td>Government of Mali</td><td>MPA</td><td>Northern Mali</td><td>250</td></tr>
+                        <tr><td>1990</td><td>Mali: Azawad</td><td>Government of Mali</td><td>MPA</td><td>Ti-n-Essako town</td><td>4</td></tr>
+                        <tr><td>1990</td><td>Mali: Azawad</td><td>Government of Mali</td><td>MPA</td><td>Tayekaren camp</td><td>40</td></tr>
+                    </tbody>
+                </table>
+            </div>
         </div>
     </div>
 
@@ -103,20 +85,45 @@
     <script src="js/schools_near.js"></script>
     <script src="js/schools_far.js"></script>
     <script>
+        // Define Tile Layers
+        const lightMode = L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
+            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
+            subdomains: 'abcd',
+            maxZoom: 20
+        });
+
+        const darkMode = L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
+            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
+            subdomains: 'abcd',
+            maxZoom: 20
+        });
+
         const map = L.map('map', {
-            zoomControl: false
-        }).setView([17.0, -4.0], 6);
-
-        L.control.zoom({ position: 'topright' }).addTo(map);
-
-        L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
-            attribution: '&copy; CARTO'
-        }).addTo(map);
+            center: [17.0, -4.0],
+            zoom: 6,
+            layers: [lightMode] // Default layer
+        });
 
         // Layer Groups
         const conflictLayer = L.layerGroup().addTo(map);
         const atRiskSchoolsLayer = L.layerGroup().addTo(map);
         const safeSchoolsLayer = L.layerGroup().addTo(map);
+
+        // Define Base Maps for Control
+        const baseMaps = {
+            "Light Mode": lightMode,
+            "Dark Mode": darkMode
+        };
+
+        // Define Overlays for Control
+        const overlayMaps = {
+            "Conflict Incidents": conflictLayer,
+            "At-Risk Schools": atRiskSchoolsLayer,
+            "Safe Schools": safeSchoolsLayer
+        };
+
+        // Add Layer Control
+        L.control.layers(baseMaps, overlayMaps, { collapsed: false, position: 'topright' }).addTo(map);
 
         // 1. Load Conflicts
         conflictData.forEach(event => {
@@ -126,16 +133,12 @@
                 color: '#e63946',
                 weight: 1,
                 fillColor: '#e63946',
-                fillOpacity: 0.3
+                fillOpacity: 0.4
             }).bindPopup(`
-                <div style="padding:5px">
-                    <b style="color:#e63946">Conflict Incident</b><br>
-                    <div style="margin-top:5px; font-size:12px">
-                        <b>Cause:</b> ${event.cause}<br>
-                        <b>Location:</b> ${event.location}<br>
-                        <b>Fatalities:</b> ${event.damages}
-                    </div>
-                </div>
+                <b style="color:#e63946">Conflict Incident</b><br>
+                <b>Cause:</b> ${event.cause}<br>
+                <b>Location:</b> ${event.location}<br>
+                <b>Fatalities:</b> ${event.damages}
             `).addTo(conflictLayer);
         });
 
@@ -143,20 +146,15 @@
         schoolsNearConflict.features.forEach(f => {
             const coords = f.geometry.coordinates;
             L.circleMarker([coords[1], coords[0]], {
-                radius: 6,
-                color: '#fff',
-                weight: 2,
+                radius: 5,
+                color: '#800000',
+                weight: 1.5,
                 fillColor: '#800000',
-                fillOpacity: 1,
-                pane: 'markerPane'
+                fillOpacity: 0.8
             }).bindPopup(`
-                <div style="padding:5px">
-                    <b style="color:#800000">⚠️ AT-RISK SCHOOL</b><br>
-                    <div style="margin-top:5px; font-size:12px">
-                        <b>Name:</b> ${f.properties.name || 'Unnamed'}<br>
-                        <b>Status:</b> Within 1km of conflict
-                    </div>
-                </div>
+                <b style="color:#800000">⚠️ AT-RISK SCHOOL</b><br>
+                <b>Name:</b> ${f.properties.name || 'Unnamed'}<br>
+                <b>Status:</b> Within 1km of conflict
             `).addTo(atRiskSchoolsLayer);
         });
 
@@ -165,18 +163,14 @@
             const coords = f.geometry.coordinates;
             L.circleMarker([coords[1], coords[0]], {
                 radius: 4,
-                color: '#fff',
-                weight: 1.5,
+                color: '#457b9d',
+                weight: 1,
                 fillColor: '#457b9d',
-                fillOpacity: 0.7
+                fillOpacity: 0.5
             }).bindPopup(`
-                <div style="padding:5px">
-                    <b style="color:#457b9d">Safe School</b><br>
-                    <div style="margin-top:5px; font-size:12px">
-                        <b>Name:</b> ${f.properties.name || 'Unnamed'}<br>
-                        <b>Status:</b> Safe distance
-                    </div>
-                </div>
+                <b style="color:#457b9d">Safe School</b><br>
+                <b>Name:</b> ${f.properties.name || 'Unnamed'}<br>
+                <b>Status:</b> Safe distance
             `).addTo(safeSchoolsLayer);
         });
 
@@ -185,13 +179,26 @@
         legend.onAdd = function () {
             const div = L.DomUtil.create('div', 'legend');
             div.innerHTML = `
-                <div class="legend-item"><i style="background: #e63946; opacity:0.4"></i> Conflict Incidents</div>
-                <div class="legend-item"><i style="background: #800000"></i> At-Risk Schools (≤1km)</div>
-                <div class="legend-item"><i style="background: #457b9d; opacity:0.7"></i> Safe Schools (>1km)</div>
+                <div><i style="background: #e63946; opacity:0.5"></i> Conflict Incidents</div>
+                <div><i style="background: #800000"></i> At-Risk Schools (≤1km)</div>
+                <div><i style="background: #457b9d; opacity:0.5"></i> Safe Schools (>1km)</div>
             `;
             return div;
         };
         legend.addTo(map);
+
+        // Custom Filter UI (Keeping the checkbox as requested/existing but it's redundant with layer control)
+        const filterControl = L.control({ position: 'topleft' });
+        filterControl.onAdd = function() {
+            const div = L.DomUtil.create('div', 'filter-control');
+            div.innerHTML = `
+                <input type="checkbox" id="riskFilter">
+                <label for="riskFilter" style="margin:0">Show ONLY At-Risk Schools</label>
+            `;
+            L.DomEvent.disableClickPropagation(div);
+            return div;
+        };
+        filterControl.addTo(map);
 
         document.getElementById('riskFilter').addEventListener('change', function(e) {
             if (e.target.checked) {
