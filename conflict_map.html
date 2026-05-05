@@ -7,6 +7,8 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <link rel="stylesheet" href="https://unpkg.com/leaflet-search@3.0.9/dist/leaflet-search.min.css" />
+    <link rel="stylesheet" href="https://unpkg.com/leaflet.fullscreen@2.4.0/Control.FullScreen.css" />
     <style>
         :root {
             --conflict-red: #e63946;
@@ -16,7 +18,7 @@
             --bg-light: #f8f9fa;
         }
         body { margin: 0; padding: 0; font-family: 'Inter', sans-serif; background-color: var(--bg-light); }
-        #map { height: 60vh; width: 100%; border-bottom: 2px solid #ddd; }
+        #map { height: 75vh; width: 100%; border-bottom: 2px solid #ddd; }
         .content-container { padding: 30px; max-width: 1200px; margin: 0 auto; }
         .header-box { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; }
         .return-btn { text-decoration: none; color: #666; font-weight: 700; border: 2px solid #ddd; padding: 8px 20px; border-radius: 30px; transition: all 0.2s; }
@@ -37,6 +39,8 @@
             cursor: pointer;
         }
         .filter-control input { cursor: pointer; }
+        .leaflet-popup-content-wrapper { border-radius: 12px; padding: 5px; }
+        .leaflet-popup-content b { color: var(--text-dark); }
     </style>
 </head>
 <body>
@@ -47,26 +51,28 @@
         <div class="header-box">
             <div>
                 <h1 style="font-weight: 800; color: var(--text-dark); margin: 0;">Mali Education Risk & Conflict Map</h1>
-                <p style="color: #666; margin: 5px 0 0 0;">Interactive visualization of conflict impact on schools</p>
+                <p style="color: #666; margin: 5px 0 0 0;">Strategic monitoring of educational infrastructure in conflict-affected zones</p>
             </div>
             <a href="index.html" class="return-btn">← Back to Portal</a>
         </div>
     </div>
 
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script src="https://unpkg.com/leaflet-search@3.0.9/dist/leaflet-search.min.js"></script>
+    <script src="https://unpkg.com/leaflet.fullscreen@2.4.0/Control.FullScreen.js"></script>
     <script src="js/data.js"></script>
     <script src="js/schools_near.js"></script>
     <script src="js/schools_far.js"></script>
     <script>
         // Define Tile Layers
         const lightMode = L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
-            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
+            attribution: '&copy; CARTO',
             subdomains: 'abcd',
             maxZoom: 20
         });
 
         const darkMode = L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
-            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
+            attribution: '&copy; CARTO',
             subdomains: 'abcd',
             maxZoom: 20
         });
@@ -74,7 +80,8 @@
         const map = L.map('map', {
             center: [17.0, -4.0],
             zoom: 6,
-            layers: [lightMode] // Default layer
+            layers: [lightMode],
+            fullscreenControl: true
         });
 
         // Layer Groups
@@ -82,21 +89,17 @@
         const atRiskSchoolsLayer = L.layerGroup().addTo(map);
         const safeSchoolsLayer = L.layerGroup().addTo(map);
 
-        // Define Base Maps for Control
-        const baseMaps = {
-            "Light Mode": lightMode,
-            "Dark Mode": darkMode
-        };
-
-        // Define Overlays for Control
+        // Layer Control
+        const baseMaps = { "Light Mode": lightMode, "Dark Mode": darkMode };
         const overlayMaps = {
             "Conflict Incidents": conflictLayer,
             "At-Risk Schools": atRiskSchoolsLayer,
             "Safe Schools": safeSchoolsLayer
         };
-
-        // Add Layer Control
         L.control.layers(baseMaps, overlayMaps, { collapsed: false, position: 'topright' }).addTo(map);
+
+        // Scale bar
+        L.control.scale({ imperial: false }).addTo(map);
 
         // 1. Load Conflicts
         conflictData.forEach(event => {
@@ -108,44 +111,58 @@
                 fillColor: '#e63946',
                 fillOpacity: 0.4
             }).bindPopup(`
-                <b style="color:#e63946">Conflict Incident</b><br>
-                <b>Cause:</b> ${event.cause}<br>
-                <b>Location:</b> ${event.location}<br>
-                <b>Fatalities:</b> ${event.damages}
+                <div style="min-width: 200px">
+                    <b style="color:#e63946; font-size: 14px;">Conflict Incident</b><hr style="margin: 8px 0">
+                    <b>Cause:</b> ${event.cause}<br>
+                    <b>Location:</b> ${event.location}<br>
+                    <b>Date:</b> ${event.date}<br>
+                    <b>Fatalities:</b> ${event.damages}
+                </div>
             `).addTo(conflictLayer);
         });
 
-        // 2. Load At-Risk Schools
-        schoolsNearConflict.features.forEach(f => {
+        // 2. Load Schools for Search and Display
+        const searchLayer = L.layerGroup().addTo(map);
+
+        function addSchool(f, isAtRisk) {
             const coords = f.geometry.coordinates;
-            L.circleMarker([coords[1], coords[0]], {
-                radius: 5,
-                color: '#800000',
+            const marker = L.circleMarker([coords[1], coords[0]], {
+                radius: isAtRisk ? 6 : 4,
+                color: isAtRisk ? '#800000' : '#457b9d',
                 weight: 1.5,
-                fillColor: '#800000',
-                fillOpacity: 0.8
+                fillColor: isAtRisk ? '#800000' : '#457b9d',
+                fillOpacity: isAtRisk ? 0.8 : 0.5,
+                title: f.properties.name || 'Unnamed School'
             }).bindPopup(`
-                <b style="color:#800000">⚠️ AT-RISK SCHOOL</b><br>
-                <b>Name:</b> ${f.properties.name || 'Unnamed'}<br>
-                <b>Status:</b> Within 1km of conflict
-            `).addTo(atRiskSchoolsLayer);
+                <div style="min-width: 180px">
+                    <b style="color:${isAtRisk ? '#800000' : '#457b9d'}; font-size: 14px;">${isAtRisk ? '⚠️ AT-RISK' : 'SAFE'} SCHOOL</b><hr style="margin: 8px 0">
+                    <b>Name:</b> ${f.properties.name || 'Unnamed'}<br>
+                    <b>Status:</b> ${isAtRisk ? 'Within 1km of conflict' : 'Safe distance'}
+                </div>
+            `);
+            
+            marker.addTo(isAtRisk ? atRiskSchoolsLayer : safeSchoolsLayer);
+            marker.addTo(searchLayer);
+        }
+
+        schoolsNearConflict.features.forEach(f => addSchool(f, true));
+        schoolsFarFromConflict.features.forEach(f => addSchool(f, false));
+
+        // Search Control
+        const searchControl = new L.Control.Search({
+            layer: searchLayer,
+            propertyName: 'title',
+            marker: false,
+            moveToLocation: function(latlng, title, map) {
+                map.setView(latlng, 14);
+            }
         });
 
-        // 3. Load Safe Schools
-        schoolsFarFromConflict.features.forEach(f => {
-            const coords = f.geometry.coordinates;
-            L.circleMarker([coords[1], coords[0]], {
-                radius: 4,
-                color: '#457b9d',
-                weight: 1,
-                fillColor: '#457b9d',
-                fillOpacity: 0.5
-            }).bindPopup(`
-                <b style="color:#457b9d">Safe School</b><br>
-                <b>Name:</b> ${f.properties.name || 'Unnamed'}<br>
-                <b>Status:</b> Safe distance
-            `).addTo(safeSchoolsLayer);
+        searchControl.on('search:locationfound', function(e) {
+            e.layer.openPopup();
         });
+
+        map.addControl(searchControl);
 
         // Legend
         const legend = L.control({position: 'bottomright'});
@@ -160,13 +177,13 @@
         };
         legend.addTo(map);
 
-        // Custom Filter UI (Keeping the checkbox as requested/existing but it's redundant with layer control)
+        // Filter UI
         const filterControl = L.control({ position: 'topleft' });
         filterControl.onAdd = function() {
             const div = L.DomUtil.create('div', 'filter-control');
             div.innerHTML = `
                 <input type="checkbox" id="riskFilter">
-                <label for="riskFilter" style="margin:0">Show ONLY At-Risk Schools</label>
+                <label for="riskFilter" style="margin:0">Only Show At-Risk Schools</label>
             `;
             L.DomEvent.disableClickPropagation(div);
             return div;
