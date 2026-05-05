@@ -3,148 +3,86 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Centralized Global Conflict Dashboard</title>
-    <!-- Bootstrap for layout, Chart.js for graphs, and Leaflet for the map -->
+    <title>Global Conflict Analysis - Quad Dashboard</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
     <style>
-        body { background-color: #f0f2f5; font-family: 'Inter', sans-serif; }
-        .header-section { padding: 30px 0; background: #1a1a1a; color: white; border-bottom: 4px solid #e63946; }
-        #map { height: 450px; width: 100%; border-radius: 0 0 15px 15px; box-shadow: 0 4px 12px rgba(0,0,0,0.1); }
-        .card { border: none; border-radius: 15px; transition: transform 0.2s; box-shadow: 0 2px 8px rgba(0,0,0,0.05); }
-        .card:hover { transform: translateY(-5px); }
-        .card-title { font-weight: 700; color: #2d3436; font-size: 1rem; margin-bottom: 1.5rem; }
-        .stat-container { margin-top: -50px; position: relative; z-index: 10; }
-        canvas { max-height: 250px; }
+        body { background-color: #f4f7f6; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
+        .header-section { padding: 40px 0; background: #2c3e50; color: white; margin-bottom: 30px; }
+        .card { border: none; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); height: 100%; transition: transform 0.2s; }
+        .card:hover { transform: translateY(-3px); }
+        .card-title { font-weight: 700; color: #34495e; font-size: 1.1rem; border-bottom: 2px solid #ecf0f1; padding-bottom: 15px; margin-bottom: 20px; }
+        canvas { max-height: 300px; }
     </style>
 </head>
 <body>
 
     <div class="header-section text-center">
-        <h1 class="fw-bold">Centralized Global Conflict Dashboard</h1>
-        <p class="text-muted">Interactive Spatial Mapping & Statistical Impact Analysis</p>
-        <div class="mt-3">
-            <a href="index.html" class="btn btn-outline-light btn-sm px-4 rounded-pill">Back to Portal</a>
-            <a href="global_map.html" class="btn btn-danger btn-sm px-4 rounded-pill">Full Map View</a>
-        </div>
+        <h1>Global Conflict Metrics</h1>
+        <p>A focused analysis of hotspots, regional trends, and incident severity</p>
+        <a href="index.html" class="btn btn-outline-light btn-sm mt-2 rounded-pill px-4">Back to Portal</a>
     </div>
 
-    <!-- Map Section -->
-    <div id="map"></div>
-
-    <div class="container stat-container mb-5">
+    <div class="container mb-5">
         <div class="row g-4">
-            <!-- (1) Top 10 Countries -->
+            <!-- (1) Top 10 Countries Bar Chart -->
             <div class="col-md-6">
-                <div class="card p-4 h-100">
-                    <h5 class="card-title text-center">Global Hotspots: Top 10 Countries</h5>
-                    <div class="row align-items-center">
-                        <div class="col-sm-7">
-                            <canvas id="countryChart"></canvas>
-                        </div>
-                        <div class="col-sm-5">
-                            <ol id="countryList" class="small mt-3"></ol>
-                        </div>
-                    </div>
+                <div class="card p-4">
+                    <h5 class="card-title text-center">Top 10 Countries by Conflict Events</h5>
+                    <canvas id="countryChart"></canvas>
                 </div>
             </div>
 
-            <!-- (2) Regional Trends -->
+            <!-- (2) Regional Trends Line Chart -->
             <div class="col-md-6">
                 <div class="card p-4">
-                    <h5 class="card-title text-center">Global Conflict Trends (All Regions)</h5>
+                    <h5 class="card-title text-center">Conflict Trends by Region (1989-2024)</h5>
                     <canvas id="regionChart"></canvas>
                 </div>
             </div>
 
-            <!-- (3) Category -->
-            <div class="col-md-4">
+            <!-- (3) Events by Category Bar Chart -->
+            <div class="col-md-6">
                 <div class="card p-4">
-                    <h5 class="card-title text-center">Types of Violence</h5>
+                    <h5 class="card-title text-center">Total Events by Category</h5>
                     <canvas id="categoryChart"></canvas>
                 </div>
             </div>
 
-            <!-- (4) Severity -->
-            <div class="col-md-4">
+            <!-- (4) Severity Bar Chart -->
+            <div class="col-md-6">
                 <div class="card p-4">
-                    <h5 class="card-title text-center">Event Severity (Fatalities)</h5>
+                    <h5 class="card-title text-center">Incident Severity (Fatality Distribution)</h5>
                     <canvas id="severityChart"></canvas>
-                </div>
-            </div>
-
-            <!-- (5) Infrastructure -->
-            <div class="col-md-4">
-                <div class="card p-4">
-                    <h5 class="card-title text-center">Infrastructure Impact</h5>
-                    <canvas id="infraChart"></canvas>
                 </div>
             </div>
         </div>
     </div>
 
-    <!-- Load Data Files -->
-    <script src="js/global_conflict_data.js"></script>
-
     <script>
-        // --- PART 1: THE MAP ---
-        const map = L.map('map').setView([15, 10], 2);
-        L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
-            attribution: '&copy; CARTO'
-        }).addTo(map);
-
-        globalConflictData.forEach(event => {
-            const radius = Math.sqrt(parseInt(event.deaths) || 1) * 2 + 3;
-            L.circleMarker([event.lat, event.lng], {
-                radius: radius,
-                fillColor: "#e63946",
-                color: "#fff",
-                weight: 1,
-                opacity: 0.8,
-                fillOpacity: 0.5
-            }).addTo(map).bindPopup(`<b>${event.country}</b><br>${event.date}<br>${event.cause}`);
-        });
-
-        // --- PART 2: THE CHARTS ---
         fetch('js/advanced_dashboard_data.json')
             .then(response => response.json())
             .then(data => {
                 
-                // 1. Country Chart & List
-                if (data.countries) {
-                    const countryLabels = Object.keys(data.countries);
-                    const countryValues = Object.values(data.countries);
-                    
-                    // Populate List for fallback
-                    const list = document.getElementById('countryList');
-                    countryLabels.forEach((name, i) => {
-                        const li = document.createElement('li');
-                        li.innerHTML = `<strong>${name}:</strong> ${countryValues[i].toLocaleString()} events`;
-                        list.appendChild(li);
-                    });
+                // 1. Country Chart (Bar)
+                new Chart(document.getElementById('countryChart'), {
+                    type: 'bar',
+                    data: {
+                        labels: Object.keys(data.countries),
+                        datasets: [{
+                            label: 'Number of Events',
+                            data: Object.values(data.countries),
+                            backgroundColor: '#3498db',
+                            borderRadius: 6
+                        }]
+                    },
+                    options: { 
+                        indexAxis: 'y',
+                        plugins: { legend: { display: false } }
+                    }
+                });
 
-                    new Chart(document.getElementById('countryChart'), {
-                        type: 'bar',
-                        data: {
-                            labels: countryLabels,
-                            datasets: [{
-                                label: 'Events',
-                                data: countryValues,
-                                backgroundColor: '#0984e3',
-                                borderRadius: 5
-                            }]
-                        },
-                        options: { 
-                            indexAxis: 'y', // Horizontal is often better for many labels
-                            plugins: { legend: { display: false } },
-                            scales: { x: { beginAtZero: true } }
-                        }
-                    });
-                }
-
-                // 2. Region Chart (Combined Trends)
+                // 2. Region Chart (Line)
                 const years = new Set();
                 Object.values(data.regions).forEach(reg => Object.keys(reg).forEach(y => years.add(y)));
                 const sortedYears = Array.from(years).sort();
@@ -152,7 +90,8 @@
                 const datasets = Object.keys(data.regions).map((region, i) => ({
                     label: region,
                     data: sortedYears.map(y => data.regions[region][y] || 0),
-                    borderColor: ['#e17055', '#fdcb6e', '#00b894', '#6c5ce7', '#fab1a0'][i % 5],
+                    borderColor: ['#e67e22', '#16a085', '#2980b9'][i % 3],
+                    backgroundColor: ['#e67e22', '#16a085', '#2980b9'][i % 3],
                     tension: 0.3,
                     fill: false
                 }));
@@ -160,46 +99,45 @@
                 new Chart(document.getElementById('regionChart'), {
                     type: 'line',
                     data: { labels: sortedYears, datasets: datasets },
-                    options: { responsive: true }
-                });
-
-                // 3. Category Chart
-                new Chart(document.getElementById('categoryChart'), {
-                    type: 'doughnut',
-                    data: {
-                        labels: Object.keys(data.categories),
-                        datasets: [{
-                            data: Object.values(data.categories),
-                            backgroundColor: ['#d63031', '#00b894', '#fdcb6e']
-                        }]
+                    options: { 
+                        responsive: true,
+                        interaction: { intersect: false, mode: 'index' }
                     }
                 });
 
-                // 4. Severity Chart
+                // 3. Category Chart (Bar)
+                new Chart(document.getElementById('categoryChart'), {
+                    type: 'bar',
+                    data: {
+                        labels: Object.keys(data.categories),
+                        datasets: [{
+                            label: 'Total Events',
+                            data: Object.values(data.categories),
+                            backgroundColor: ['#e74c3c', '#2ecc71', '#f1c40f'],
+                            borderRadius: 6
+                        }]
+                    },
+                    options: { 
+                        plugins: { legend: { display: false } }
+                    }
+                });
+
+                // 4. Severity Chart (Bar)
                 const sevOrder = ["Low (0)", "Medium (1-9)", "High (10-49)", "Critical (50+)"];
                 new Chart(document.getElementById('severityChart'), {
                     type: 'bar',
                     data: {
                         labels: sevOrder,
                         datasets: [{
+                            label: 'Total Events',
                             data: sevOrder.map(s => data.severity[s] || 0),
-                            backgroundColor: '#6c5ce7'
+                            backgroundColor: '#9b59b6',
+                            borderRadius: 6
                         }]
                     },
-                    options: { plugins: { legend: { display: false } } }
-                });
-
-                // 5. Infrastructure Chart
-                new Chart(document.getElementById('infraChart'), {
-                    type: 'bar',
-                    data: {
-                        labels: Object.keys(data.infrastructure),
-                        datasets: [{
-                            data: Object.values(data.infrastructure),
-                            backgroundColor: '#1abc9c'
-                        }]
-                    },
-                    options: { indexAxis: 'y', plugins: { legend: { display: false } } }
+                    options: { 
+                        plugins: { legend: { display: false } }
+                    }
                 });
             });
     </script>
