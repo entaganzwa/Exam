@@ -114,25 +114,56 @@
     </div>
 
     <div class="container mb-5">
-        <h4 class="text-center mb-4" style="color: #888; text-transform: uppercase; font-size: 14px; letter-spacing: 2px;">Raw Data Explorers</h4>
-        <div class="row g-3 justify-content-center">
-            <div class="col-6 col-md-2">
-                <a href="preview_at_risk_schools.html" class="btn btn-outline-secondary w-100 btn-sm">At-Risk Schools</a>
+        <div class="row g-4">
+            <!-- Documentation Section -->
+            <div class="col-md-12">
+                <div class="card-tool text-start">
+                    <h3>🚀 The Project Process</h3>
+                    <p>This project follows a rigorous data science workflow to transform raw conflict and geographical data into actionable insights for educational protection.</p>
+                    <ol>
+                        <li><strong>Data Collection:</strong> Aggregated conflict data from UCDP GED and education facility data from Humanitarian OpenStreetMap.</li>
+                        <li><strong>Data Filtering:</strong> Isolated Mali-specific conflict events using automated Python scripts.</li>
+                        <li><strong>Spatial Analysis:</strong> Calculated distances between schools and conflict epicenters to identify facilities within high-risk zones (1km radius).</li>
+                        <li><strong>Visualization:</strong> Developed interactive Leaflet-based maps and D3/Bootstrap dashboards for real-time monitoring.</li>
+                    </ol>
+                    <div class="mt-3">
+                        <a href="https://github.com/entaganzwa/Exam/tree/main/scripts" class="btn btn-outline-dark btn-sm">View Python Scripts</a>
+                        <a href="https://github.com/entaganzwa/Exam/tree/main/data" class="btn btn-outline-dark btn-sm">Access Datasets</a>
+                    </div>
+                </div>
             </div>
-            <div class="col-6 col-md-2">
-                <a href="preview_ged_events.html" class="btn btn-outline-secondary w-100 btn-sm">Global Events</a>
+        </div>
+    </div>
+
+    <div class="container mb-5">
+        <h4 class="text-center mb-4" style="color: #888; text-transform: uppercase; font-size: 14px; letter-spacing: 2px;">Data & Scripts Inventory</h4>
+        <div class="row g-3">
+            <div class="col-md-6">
+                <div class="p-3 bg-white rounded-3 shadow-sm">
+                    <h5>📂 Processed Data</h5>
+                    <ul class="list-unstyled mb-0">
+                        <li><a href="data/processed/mali_conflicts.csv" class="text-decoration-none">📍 Mali Conflicts (CSV)</a></li>
+                        <li><a href="data/processed/at_risk_schools.csv" class="text-decoration-none">🏫 At-Risk Schools (CSV)</a></li>
+                        <li><a href="data/processed/schools_within_1km_conflict.geojson" class="text-decoration-none">🌍 GeoJSON: High Risk Zone</a></li>
+                    </ul>
+                </div>
             </div>
-            <div class="col-6 col-md-2">
-                <a href="preview_mali_conflicts.html" class="btn btn-outline-secondary w-100 btn-sm">Mali Conflicts</a>
-            </div>
-            <div class="col-6 col-md-2">
-                <a href="preview_mali_schools.html" class="btn btn-outline-secondary w-100 btn-sm">All Schools</a>
+            <div class="col-md-6">
+                <div class="p-3 bg-white rounded-3 shadow-sm">
+                    <h5>📜 Analysis Scripts</h5>
+                    <ul class="list-unstyled mb-0">
+                        <li><a href="scripts/filter_mali.py" class="text-decoration-none">🐍 filter_mali.py</a></li>
+                        <li><a href="scripts/identify_at_risk_schools.py" class="text-decoration-none">🐍 identify_at_risk_schools.py</a></li>
+                        <li><a href="scripts/extract_advanced_metrics.py" class="text-decoration-none">🐍 extract_advanced_metrics.py</a></li>
+                    </ul>
+                </div>
             </div>
         </div>
     </div>
 
     <footer class="text-center py-5 text-muted">
         <p>© 2026 Mali Conflict Risk Project • Data powered by GEDEvent v25.1</p>
+        <p><a href="https://github.com/entaganzwa/Exam" class="text-muted">View Source on GitHub</a></p>
     </footer>
 
 </body>
